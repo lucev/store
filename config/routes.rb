@@ -1,4 +1,7 @@
 Store::Application.routes.draw do
+  resources :variants
+
+
   resources :products
 
 

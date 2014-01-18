@@ -4,4 +4,6 @@ class Product
 
   field :name, type: String
   field :description, type: String
+
+  has_many :variants
 end
