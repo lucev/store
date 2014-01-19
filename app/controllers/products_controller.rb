@@ -2,53 +2,58 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all
+    @variants = Variant.where(is_master: true)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @products }
+      format.json { render json: @variants }
     end
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
-    @product = Product.find(params[:id])
+    @variant = Variant.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @product }
+      format.json { render json: @variant }
     end
   end
 
   # GET /products/new
   # GET /products/new.json
   def new
-    @product = Product.new
+    @variant = Variant.new(is_master: true)
+    @variant.build_product
+
+    @path = products_path
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @product }
+      format.json { render json: @variant }
     end
   end
 
   # GET /products/1/edit
   def edit
-    @product = Product.find(params[:id])
+    @variant = Variant.find(params[:id])
+    @path = product_path(@variant)
   end
 
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(params[:product])
+    params[:variant][:is_master] = true
+    @variant = Variant.new(params[:variant])
 
     respond_to do |format|
-      if @product.save
-        format.html { redirect_to @product, notice: 'Product was successfully created.' }
-        format.json { render json: @product, status: :created, location: @product }
+      if @variant.save
+        format.html { redirect_to product_path(@variant), notice: 'Product was successfully created.' }
+        format.json { render json: @variant, status: :created, location: @variant }
       else
         format.html { render action: "new" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.json { render json: @variant.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,15 +61,15 @@ class ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.json
   def update
-    @product = Product.find(params[:id])
+    @variant = Variant.find(params[:id])
 
     respond_to do |format|
-      if @product.update_attributes(params[:product])
-        format.html { redirect_to @product, notice: 'Product was successfully updated.' }
+      if @variant.update_attributes(params[:variant])
+        format.html { redirect_to product_path(@variant), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @product.errors, status: :unprocessable_entity }
+        format.json { render json: @variant.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,8 +77,8 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @product = Product.find(params[:id])
-    @product.destroy
+    @variant = Variant.find(params[:id])
+    @variant.destroy
 
     respond_to do |format|
       format.html { redirect_to products_url }

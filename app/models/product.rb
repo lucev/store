@@ -5,5 +5,9 @@ class Product
   field :name, type: String
   field :description, type: String
 
-  has_many :variants
+  embedded_in :variant
+
+  def sku
+    # self.variants.find_by(is_master: true).sku
+  end
 end

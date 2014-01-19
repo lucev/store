@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>SKU</th>
     <th>Name</th>
     <th>Description</th>
     <th></th>
@@ -9,13 +10,14 @@
     <th></th>
   </tr>
 
-<% @products.each do |product| %>
+<% @variants.each do |variant| %>
   <tr>
-    <td><%= product.name %></td>
-    <td><%= product.description %></td>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= variant.sku %></td>
+    <td><%= variant.product.name %></td>
+    <td><%= variant.product.description %></td>
+    <td><%= link_to 'Show', product_path(variant) %></td>
+    <td><%= link_to 'Edit', edit_product_path(variant) %></td>
+    <td><%= link_to 'Destroy', product_path(variant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
