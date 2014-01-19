@@ -26,6 +26,9 @@ class Admin::VariantsController < AdminController
   # GET /variants/new.json
   def new
     @variant = Variant.new
+    @master_variant = Variant.find(params[:product_id])
+    @variant.price = @master_variant.price
+    @path = admin_product_variants_path(@master_variant)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -36,6 +39,7 @@ class Admin::VariantsController < AdminController
   # GET /variants/1/edit
   def edit
     @variant = Variant.find(params[:id])
+    @path = admin_product_variant_path(@variant.master_id, @variant)
   end
 
   # POST /variants
@@ -65,7 +69,8 @@ class Admin::VariantsController < AdminController
 
     respond_to do |format|
       if @variant.update_attributes(params[:variant])
-        format.html { redirect_to @variant, notice: 'Variant was successfully updated.' }
+        format.html { redirect_to admin_product_variant_path(@variant.master_id, @variant),
+          notice: 'Variant was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

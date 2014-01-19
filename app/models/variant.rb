@@ -4,6 +4,7 @@ class Variant
 
   field :master_id, type: String
   field :sku, type: String
+  field :price, type: BigDecimal
   field :is_master, type: Boolean
 
   embeds_one :product
