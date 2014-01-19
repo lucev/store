@@ -2,6 +2,7 @@ class Variant
   include Mongoid::Document
   include Mongoid::Timestamps
 
+  field :master_id, type: String
   field :sku, type: String
   field :is_master, type: Boolean
 

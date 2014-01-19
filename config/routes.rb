@@ -1,8 +1,9 @@
 Store::Application.routes.draw do
-  resources :variants
+  
+  resources :products do
+    resources :variants
+  end
 
-
-  resources :products
 
 
   # The priority is based upon order of creation:

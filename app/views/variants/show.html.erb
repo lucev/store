@@ -1,10 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <b>Name:</b>
+  <%= @variant.product.name %>
+</p>
+<p>
+  <b>Description:</b>
+  <%= @variant.product.description %>
+</p>
+<p>
   <b>Sku:</b>
   <%= @variant.sku %>
 </p>
 
 
-<%= link_to 'Edit', edit_variant_path(@variant) %> |
-<%= link_to 'Back', variants_path %>
+<%#= link_to 'Edit', edit_variant_path(@variant) %> |
+<%#= link_to 'Back', variants_path %>

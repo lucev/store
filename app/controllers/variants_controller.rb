@@ -2,7 +2,8 @@ class VariantsController < ApplicationController
   # GET /variants
   # GET /variants.json
   def index
-    @variants = Variant.all
+    @master_variant = Variant.find(params[:product_id])
+    @variants = Variant.where(:master_id => @master_variant.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,12 +41,16 @@ class VariantsController < ApplicationController
   # POST /variants
   # POST /variants.json
   def create
+    @master_variant = Variant.find(params[:product_id])
+    params[:variant][:is_master] = false
+    params[:variant][:master_id] = @master_variant.id
+    params[:variant][:product] = @master_variant.product
     @variant = Variant.new(params[:variant])
 
     respond_to do |format|
       if @variant.save
-        format.html { redirect_to @variant, notice: 'Variant was successfully created.' }
-        format.json { render json: @variant, status: :created, location: @variant }
+        format.html { redirect_to product_variant_path(@variant.master_id, @variant), notice: 'Variant was successfully created.' }
+        format.json { render json: product_variant_path(@variant.master_id, @variant), status: :created, location: product_variant_path(@variant) }
       else
         format.html { render action: "new" }
         format.json { render json: @variant.errors, status: :unprocessable_entity }

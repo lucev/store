@@ -61,15 +61,25 @@ class ProductsController < ApplicationController
   # PUT /products/1
   # PUT /products/1.json
   def update
-    @variant = Variant.find(params[:id])
-
+    @master_variant = Variant.find(params[:id])
+    
     respond_to do |format|
-      if @variant.update_attributes(params[:variant])
-        format.html { redirect_to product_path(@variant), notice: 'Product was successfully updated.' }
+      if @master_variant.update_attributes(params[:variant])
+
+        @variants = Variant.where(:master_id => @master_variant.id)
+        unless @variants.empty?
+          puts "Variants count: #{variants.count}"
+          @variants.each do |v|
+            v.product.update_attributes(
+              :name => @master_variant.product.name,
+              :description => @master_variant.product.description)
+          end
+        end
+        format.html { redirect_to product_path(@master_variant), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @variant.errors, status: :unprocessable_entity }
+        format.json { render json: @master_variant.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -77,8 +87,14 @@ class ProductsController < ApplicationController
   # DELETE /products/1
   # DELETE /products/1.json
   def destroy
-    @variant = Variant.find(params[:id])
-    @variant.destroy
+    @master_variant = Variant.find(params[:id])
+    @variants = Variant.where(:master_id => @master_variant.id)
+    unless @variants.empty?
+      @variants.each do |v|
+        v.destroy
+      end
+    end
+    @master_variant.destroy
 
     respond_to do |format|
       format.html { redirect_to products_url }
