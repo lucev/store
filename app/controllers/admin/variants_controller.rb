@@ -1,5 +1,5 @@
-class Admin::VariantsController < ApplicationController
-  # GET /variants
+class Admin::VariantsController < AdminController
+
   # GET /variants.json
   def index
     @master_variant = Variant.find(params[:product_id])
