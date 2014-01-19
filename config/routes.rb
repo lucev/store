@@ -1,9 +1,14 @@
 Store::Application.routes.draw do
   
-  resources :products do
-    resources :variants
-  end
+  root :to => 'products#index'
 
+  devise_for :users
+
+  namespace :admin do
+    resources :products do
+      resources :variants
+    end
+  end
 
 
   # The priority is based upon order of creation:

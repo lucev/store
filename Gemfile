@@ -38,3 +38,4 @@ gem 'jquery-rails'
 
 gem 'mongoid', '~> 3.1.0'
 
+gem 'devise'

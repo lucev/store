@@ -15,13 +15,13 @@
     <td><%= variant.sku %></td>
     <td><%= variant.product.name %></td>
     <td><%= variant.product.description %></td>
-    <td><%= link_to 'Show', product_path(variant) %></td>
-    <td><%= link_to 'Edit', edit_product_path(variant) %></td>
-    <td><%= link_to 'Destroy', product_path(variant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', admin_product_path(variant) %></td>
+    <td><%= link_to 'Edit', edit_admin_product_path(variant) %></td>
+    <td><%= link_to 'Destroy', admin_product_path(variant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Product', new_product_path %>
+<%= link_to 'New Product', new_admin_product_path %>

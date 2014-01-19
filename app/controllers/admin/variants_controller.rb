@@ -1,4 +1,4 @@
-class VariantsController < ApplicationController
+class Admin::VariantsController < ApplicationController
   # GET /variants
   # GET /variants.json
   def index
@@ -49,8 +49,8 @@ class VariantsController < ApplicationController
 
     respond_to do |format|
       if @variant.save
-        format.html { redirect_to product_variant_path(@variant.master_id, @variant), notice: 'Variant was successfully created.' }
-        format.json { render json: product_variant_path(@variant.master_id, @variant), status: :created, location: product_variant_path(@variant) }
+        format.html { redirect_to admin_product_variant_path(@variant.master_id, @variant), notice: 'Variant was successfully created.' }
+        format.json { render json: admin_product_variant_path(@variant.master_id, @variant), status: :created, location: product_variant_path(@variant) }
       else
         format.html { render action: "new" }
         format.json { render json: @variant.errors, status: :unprocessable_entity }

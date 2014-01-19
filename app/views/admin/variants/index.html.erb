@@ -14,7 +14,7 @@
 <% @variants.each do |variant| %>
   <tr>
     <td><%= variant.sku %></td>
-    <td><%= link_to 'Show', product_variant_path(variant.master_id, variant) %></td>
+    <td><%= link_to 'Show', admin_product_variant_path(variant.master_id, variant) %></td>
     <td><%#= link_to 'Edit', edit_product_variant_path(variant) %></td>
     <td><%#= link_to 'Destroy', product_variant_path(variant), method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>

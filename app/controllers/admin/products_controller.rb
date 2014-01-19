@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class Admin::ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
@@ -27,7 +27,7 @@ class ProductsController < ApplicationController
     @variant = Variant.new(is_master: true)
     @variant.build_product
 
-    @path = products_path
+    @path = admin_products_path
 
     respond_to do |format|
       format.html # new.html.erb
@@ -38,7 +38,7 @@ class ProductsController < ApplicationController
   # GET /products/1/edit
   def edit
     @variant = Variant.find(params[:id])
-    @path = product_path(@variant)
+    @path = admin_product_path(@variant)
   end
 
   # POST /products
@@ -49,7 +49,7 @@ class ProductsController < ApplicationController
 
     respond_to do |format|
       if @variant.save
-        format.html { redirect_to product_path(@variant), notice: 'Product was successfully created.' }
+        format.html { redirect_to admin_product_path(@variant), notice: 'Product was successfully created.' }
         format.json { render json: @variant, status: :created, location: @variant }
       else
         format.html { render action: "new" }
@@ -68,14 +68,13 @@ class ProductsController < ApplicationController
 
         @variants = Variant.where(:master_id => @master_variant.id)
         unless @variants.empty?
-          puts "Variants count: #{variants.count}"
           @variants.each do |v|
             v.product.update_attributes(
               :name => @master_variant.product.name,
               :description => @master_variant.product.description)
           end
         end
-        format.html { redirect_to product_path(@master_variant), notice: 'Product was successfully updated.' }
+        format.html { redirect_to admin_product_path(@master_variant), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
