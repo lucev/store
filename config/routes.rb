@@ -1,6 +1,10 @@
 Store::Application.routes.draw do
   
-  root :to => 'products#index'
+  root :to => 'pages#home'
+  match 'products/:id' => 'variants#show', :as => :product
+  match 'products' => 'pages#home'
+
+  resources :variants
 
   devise_for :users
 
