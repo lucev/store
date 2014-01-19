@@ -3,6 +3,9 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
+
+  has_and_belongs_to_many :roles
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -40,4 +43,11 @@ class User
 
   ## Token authenticatable
   # field :authentication_token, :type => String
+
+  def has_role?(role)
+    if self.roles.exists? then
+      self.roles.find_by(:name => role).present?
+    end
+  end
+
 end
