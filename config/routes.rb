@@ -5,6 +5,9 @@ Store::Application.routes.draw do
   devise_for :users
 
   namespace :admin do
+
+    match '/' => 'products#index', :as => :root
+
     resources :products do
       resources :variants
     end
