@@ -8,6 +8,7 @@ class Variant
   field :is_master, type: Boolean
 
   embeds_one :product
+  embeds_many :images
 
   accepts_nested_attributes_for :product
 
