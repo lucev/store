@@ -4,8 +4,6 @@ Store::Application.routes.draw do
   match 'products/:id' => 'variants#show', :as => :product
   match 'products' => 'pages#home'
 
-  resources :variants
-
   devise_for :users
 
   namespace :admin do
