@@ -3,6 +3,7 @@ class Image
   include Mongoid::Timestamps
 
   field :image, type: String
+  field :is_primary, type: Boolean
 
   embedded_in :variant
   

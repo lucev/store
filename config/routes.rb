@@ -13,7 +13,10 @@ Store::Application.routes.draw do
     match '/' => 'products#index', :as => :root
 
     resources :products do
-      resources :variants
+      resources :variants do
+        resources :images
+      end
+      resources :images
     end
   end
 

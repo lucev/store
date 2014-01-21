@@ -6,8 +6,6 @@ class Product
   field :description, type: String
 
   embedded_in :variant
-
-  def sku
-    # self.variants.find_by(is_master: true).sku
-  end
+  embeds_one :image
+  
 end

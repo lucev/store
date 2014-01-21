@@ -26,7 +26,8 @@ class Admin::ProductsController < AdminController
   # GET /products/new.json
   def new
     @variant = Variant.new(is_master: true)
-    @variant.build_product
+    @product = @variant.build_product
+    @product.build_image
 
     @path = admin_products_path
 
