@@ -28,7 +28,7 @@ class Admin::VariantsController < AdminController
     @variant = Variant.new
     @master_variant = Variant.find(params[:product_id])
     @variant.price = @master_variant.price
-    @path = admin_product_variants_path(@master_variant)
+    @path = admin_product_variants_path(I18n.locale, @master_variant)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -39,7 +39,7 @@ class Admin::VariantsController < AdminController
   # GET /variants/1/edit
   def edit
     @variant = Variant.find(params[:id])
-    @path = admin_product_variant_path(@variant.master_id, @variant)
+    @path = admin_product_variant_path(I18n.locale, @variant.master_id, @variant)
   end
 
   # POST /variants
