@@ -1,0 +1,6 @@
+<ul class="nav nav-list">  
+  <li class="nav-header"><%= t(:images_menu) %></li>
+  <li><%= link_to ' ' + t(:add_image),
+            new_admin_product_image_path(I18n.locale, @master_variant),
+            class: 'glyphicon glyphicon-plus' %></li>
+</ul>
