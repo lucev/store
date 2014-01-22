@@ -14,6 +14,10 @@
     <%= f.file_field :image %>
   </div>
   <div class="form-group">
+    <%= f.label :alternative_text, t(:alternative_text) %><br />
+    <%= f.text_field :alternative_text %>
+  </div>  
+  <div class="form-group">
     <%= f.label :is_primary, t(:is_primary) %><br />
     <%= f.check_box :is_primary, class: 'check_box' %>
   </div>
