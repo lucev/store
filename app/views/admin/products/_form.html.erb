@@ -1,7 +1,7 @@
-<%= form_for(@variant, :url => @path) do |f| %>
-  <% if @variant.errors.any? %>
+<%= form_for(@master_variant, url: @path, html: {role: 'form'}) do |f| %>
+  <% if @master_variant.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@variant.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <h2><%= pluralize(@master_variant.errors.count, "error") %> prohibited this product from being saved:</h2>
       <ul>
       <% @variant.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -9,25 +9,26 @@
       </ul>
     </div>
   <% end %>
-  <%= f.fields_for :product do |v| %>
-    <div class="field">
-      <%= v.label :name %><br />
-      <%= v.text_field :name %>
+  <%= f.fields_for :product do |p| %>
+    <div class="form-group">
+      <%= p.label :name, t('admin.products.name') %><br />
+      <%= p.text_field :name, class: 'form-control' %>
     </div>
-    <div class="field">
-      <%= v.label :description %><br />
-      <%= v.text_field :description %>
+    <div class="form-group">
+      <%= p.label :description, t(:description) %><br />
+      <%= p.text_field :description, class: 'form-control' %>
     </div>
   <% end %>
-  <div class="field">
-    <%= f.label :sku %><br />
-    <%= f.text_field :sku %>
+  <div class="form-group">
+    <%= f.label :sku, t(:sku) %><br />
+    <%= f.text_field :sku, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :price %><br />
-    <%= f.text_field :price %>
+  <div class="form-group">
+    <%= f.label :price, t(:price) %><br />
+    <%= f.text_field :price, class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit t(:save),  class: 'btn btn-primary' %>
+    <%= link_to t(:cancel), admin_products_path(I18n.locale), class: 'btn btn-link' %>
   </div>
 <% end %>

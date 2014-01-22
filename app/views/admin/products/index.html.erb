@@ -1,26 +1,32 @@
-<h1>Listing products</h1>
+<h1><%= t(:listing_products) %></h1>
 
 <table class="table table-striped table-hover">
   <tr>
-    <th>SKU</th>
-    <th>Image</th>
-    <th>Name</th>
-    <th>Price</th>
-    <th></th>
-    <th></th>
+    <th class="hidden-xs"><%= t(:sku) %></th>
+    <th><%= t(:image) %></th>
+    <th><%= t('admin.products.name') %></th>
+    <th><%= t(:price) %></th>
+    <th class="hidden-xs"></th>
   </tr>
-<% @variants.each do |variant| %>
+<% @master_variants.each do |variant| %>
   <tr>
-    <td><%= variant.sku %></td>
+    <td class="hidden-xs"><%= variant.sku %></td>
     <td><%= image_tag variant.images.first.image_url(:icon).to_s unless variant.images.empty? %>
-    <td><%= link_to variant.product.name, edit_admin_product_path(variant) %></td>
+    <td><%= link_to variant.product.name,
+              edit_admin_product_path(I18n.locale, variant), class: 'btn btn-link' %></td>
     <td><%= variant.price %></td>
-    <td><%= link_to '', edit_admin_product_path(variant), :class=>'glyphicon glyphicon-edit' %></td>
-    <td><%= link_to '', admin_product_path(variant), method: :delete, data: { confirm: 'Are you sure?' }, :class => 'glyphicon glyphicon-remove' %></td>
+    <td class="hidden-xs">
+      <%= link_to '', edit_admin_product_path(I18n.locale, variant),
+            :class=>'glyphicon glyphicon-edit btn btn-link' %>&nbsp;
+      <%= link_to '', admin_product_path(I18n.locale, variant), method: :delete,
+            data: { confirm: t(:are_sure) }, :class => 'glyphicon glyphicon-trash btn btn-link' %>
+    </td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Product', new_admin_product_path %>
+<%= link_to new_admin_product_path(I18n.locale), :class => 'btn btn-primary' do %>
+  <span class='glyphicon glyphicon-plus'></span> <%= t(:new_product) %>
+<% end %>

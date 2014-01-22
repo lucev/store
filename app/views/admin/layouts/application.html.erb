@@ -2,20 +2,43 @@
 <html>
 <head>
   <title>Stores</title>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 </head>
 <body>
 
 <wrapper>
   <div id="header">
   </div>
-  <div id="admin-menu">
-    <p><%= link_to 'Admin', admin_root_path %></p>
+  <nav class="navbar navbar-default" role="navigation">
+    <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <%= link_to t(:home), admin_root_path(I18n.locale), class: 'navbar-brand' %>
   </div>
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+      <li><%= link_to t(:orders), '#' %></li>
+      <li><%= link_to t(:products), admin_products_path(I18n.locale) %></a></li>
+      <li><%= link_to t(:users), '#' %></li>
+    </ul>
+    <p class="navbar-text navbar-right">
+      <% if I18n.locale == :en %>
+        <%= link_to 'Hrvatski', url_for(locale: :hr), class: 'navbar-link' %>
+      <% else %>
+        <%= link_to 'English', url_for(locale: :en), class: 'navbar-link' %>
+      <% end %>
+    </p>
+  </div>
+  </nav>
   <div class="container">
     <%= yield %>
   </div>
