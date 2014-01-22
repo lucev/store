@@ -37,8 +37,10 @@ en:
   description: 'Description'
 
   sku: 'SKU'
+
   save: 'Save'
   cancel: 'Cancel'
+  signout: 'Sign out'
 
   admin:
     products:

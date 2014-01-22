@@ -30,13 +30,25 @@
       <li><%= link_to t(:products), admin_products_path(I18n.locale) %></a></li>
       <li><%= link_to t(:users), '#' %></li>
     </ul>
-    <p class="navbar-text navbar-right">
-      <% if I18n.locale == :en %>
-        <%= link_to 'Hrvatski', url_for(locale: :hr), class: 'navbar-link' %>
-      <% else %>
-        <%= link_to 'English', url_for(locale: :en), class: 'navbar-link' %>
+    <ul class="nav navbar-nav navbar-right">
+      <% if user_signed_in? %>
+        <li class='dropdown'>
+          <%= link_to "#", :class => 'dropdown-toggle', :'data-toggle' => 'dropdown' do %>
+            <%= current_user.email %><b class="caret"></b>
+          <% end %>
+          <ul class="dropdown-menu">
+            <li><%= link_to t(:signout), destroy_user_session_path(I18n.locale), :method => :delete %></li>
+          </ul>
+        </li>
       <% end %>
-    </p>
+      <li>
+        <% if I18n.locale == :en %>
+          <%= link_to 'Hrvatski', url_for(locale: :hr), class: 'navbar-link' %>
+        <% else %>
+          <%= link_to 'English', url_for(locale: :en), class: 'navbar-link' %>
+        <% end %>
+      </li>
+    </ul>
   </div>
   </nav>
   <div class="container">

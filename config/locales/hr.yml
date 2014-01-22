@@ -37,8 +37,10 @@ hr:
   description: 'Opis'
 
   sku: 'Kataloški br.'
+
   save: 'Spremi'
   cancel: 'Odustani'
+  signout: 'Odjavi se'
 
   admin:
     products:
