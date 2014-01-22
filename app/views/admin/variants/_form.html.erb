@@ -1,5 +1,4 @@
-<%= form_for(@variant, :url => @path,
-      :role => "form") do |f| %>
+<%= form_for(@variant, :url => @path, html: {role: 'form'}) do |f| %>
   <% if @variant.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@variant.errors.count, "error") %> prohibited this variant from being saved:</h2>
@@ -12,16 +11,16 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :sku %><br />
-    <%= f.text_field :sku %>
+  <div class="form-group">
+    <%= f.label :sku, t(:sku) %><br />
+    <%= f.text_field :sku, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :price %><br />
-    <%= f.text_field :price %>
+  <div class="form-group">
+    <%= f.label :price, t(:price) %><br />
+    <%= f.text_field :price, class: 'form-control' %>
   </div>
   <div class="actions">
     <%= f.submit t(:save), class: 'btn btn-primary' %>
-    <%= link_to t(:cancel), admin_product_variants_path(I18n.locale, @master_variant), class: 'btn btn-link' %>
+    <%= link_to t(:cancel), @cancel_path, class: 'btn btn-link' %>
   </div>
 <% end %>

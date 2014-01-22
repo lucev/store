@@ -27,6 +27,11 @@ hr:
   thumbnail: 'Slika'
   alternative_text: 'Alternativni tekst'  
 
+  variant: 'Varijacija'
+  listing_variants: 'Prikaz varijacija'
+  new_variant: 'Nova varijacija'
+  editing_variant: 'Ažuriranje varijacije'
+
   price: 'Cijena'
 
   description: 'Opis'

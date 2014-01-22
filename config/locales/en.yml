@@ -27,6 +27,11 @@ en:
   thumbnail: 'Thumbnail'
   alternative_text: 'Alternative text'
 
+  variant: 'Varijacija'
+  listing_variants: 'Listing variants'
+  new_variant: 'New variant'
+  editing_variant: 'Editing variant'
+
   price: 'Price'
 
   description: 'Description'
