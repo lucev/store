@@ -49,6 +49,7 @@ class Admin::ProductsController < AdminController
   def create
     params[:variant][:is_master] = true
     @master_variant = Variant.new(params[:variant])
+    @master_variant.master_id = @master_variant.id
 
     respond_to do |format|
       if @master_variant.save
