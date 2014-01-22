@@ -40,7 +40,11 @@ hr:
 
   save: 'Spremi'
   cancel: 'Odustani'
-  signout: 'Odjavi se'
+  sign_in: 'Prijavi se'
+  sign_out: 'Odjavi se'
+  email: 'Email'
+  password: 'Lozinka'
+  remember_me: 'Zapamti me'
 
   admin:
     products:

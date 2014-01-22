@@ -37,7 +37,7 @@
             <%= current_user.email %><b class="caret"></b>
           <% end %>
           <ul class="dropdown-menu">
-            <li><%= link_to t(:signout), destroy_user_session_path(I18n.locale), :method => :delete %></li>
+            <li><%= link_to t(:sign_out), destroy_user_session_path(I18n.locale), :method => :delete %></li>
           </ul>
         </li>
       <% end %>
