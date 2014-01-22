@@ -9,14 +9,7 @@ class Admin::ImagesController < AdminController
       @variant = @master_variant
     end
 
-    @variants = Variant.where(:master_id => @master_variant.id)
-    @images = @master_variant.images
-    
-    # unless @variants.empty?
-    #   @variants.each do |v|
-    #     @images << v.images unless v.images.empty?
-    #   end
-    # end
+    @variants = Variant.where(:master_id => @master_variant.id).order_by(created_at: 'asc')
   end
 
   def new
@@ -54,13 +47,19 @@ class Admin::ImagesController < AdminController
   end
 
   def create
-    @variant = Variant.find(params[:variant_id])
+    @image = Image.new(params[:image])
 
+    if params[:variant_id].empty?
+      @image.is_product_image = true
+      @variant = Variant.find(params[:product_id])
+    else
+      @variant = Variant.find(params[:variant_id])
+    end
     respond_to do |format|
-      if @variant.images.create(params[:image])
+      if @variant.images.push @image
         format.html { redirect_to session[:variant_images_page], notice: 'Image was successfully created.' }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'edit'}
       end
     end
   end

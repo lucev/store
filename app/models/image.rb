@@ -5,6 +5,7 @@ class Image
   field :image, type: String
   field :alternative_text, type: String
   field :is_primary, type: Boolean
+  field :is_product_image, type: Boolean
 
   embedded_in :variant
   
