@@ -29,6 +29,7 @@ class Admin::ImagesController < AdminController
       @master_variant = Variant.find(@variant.master_id)
       @cancel_path = admin_product_variant_path(I18n.locale, @master_variant, @variant)
     end
+    @variants = Variant.where(master_id: @master_variant.id)
     session[:variant_images_page] = request.env['HTTP_REFERER'] ||
                                       admin_product_images_path(I18n.locale, @master_variant)
 
