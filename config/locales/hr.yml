@@ -1,0 +1,40 @@
+hr:
+  are_sure: 'Jeste li sigurni?'
+
+  home: 'Početna'
+
+  orders: 'Narudžbe'
+  products: 'Proizvodi'
+  variants: 'Varijacije'
+  users: 'Korisnici'
+  images: 'Slike'  
+  image: 'Slika'
+  is_primary: 'Glavna slika proizvoda'
+
+  product_details: 'Detalji proizvoda'
+  products_menu: 'Izbornik proizvoda'
+
+  new_product: 'Novi proizvod'
+  create_product: 'Kreiraj proizvod'
+  update_product: 'Ažuriraj proizvod'
+  editing_product: 'Ažuriranje proizvoda'
+  listing_products: 'Prikaz proizvoda'
+  listing_product_images: 'Slike proizvoda'
+
+  images_menu: 'Slike'
+  add_image: 'Dodaj sliku'
+  new_image: 'Nova slika'
+  thumbnail: 'Slika'
+  alternative_text: 'Alternativni tekst'  
+
+  price: 'Cijena'
+
+  description: 'Opis'
+
+  sku: 'Kataloški br.'
+  save: 'Spremi'
+  cancel: 'Odustani'
+
+  admin:
+    products:
+      name: 'Naziv'

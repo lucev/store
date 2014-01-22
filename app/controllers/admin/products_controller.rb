@@ -76,7 +76,7 @@ class Admin::ProductsController < AdminController
               :description => @master_variant.product.description)
           end
         end
-        format.html { redirect_to admin_product_path(@master_variant), notice: 'Product was successfully updated.' }
+        format.html { redirect_to admin_product_path(I18n.locale, @master_variant), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -98,7 +98,7 @@ class Admin::ProductsController < AdminController
     @master_variant.destroy
 
     respond_to do |format|
-      format.html { redirect_to products_url }
+      format.html { redirect_to admin_products_url(I18n.locale) }
       format.json { head :no_content }
     end
   end

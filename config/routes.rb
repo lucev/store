@@ -1,8 +1,6 @@
 Store::Application.routes.draw do
   
-  root :to => 'pages#home'
-  match 'products/:id' => 'variants#show', :as => :product
-  match 'products' => 'pages#home'
+  scope "(:locale)", locale: /en|hr/ do
 
   devise_for :users
 

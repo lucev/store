@@ -21,6 +21,7 @@
     <%= f.text_field :price %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit t(:save), class: 'btn btn-primary' %>
+    <%= link_to t(:cancel), admin_product_variants_path(I18n.locale, @master_variant), class: 'btn btn-link' %>
   </div>
 <% end %>

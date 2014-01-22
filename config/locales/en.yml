@@ -1,5 +1,40 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  are_sure: 'Are you sure?'
+
+  home: 'Home'
+
+  orders: 'Orders'
+  products: 'Products'
+  variants: 'Variants'
+  users: 'Users'
+  images: 'Images'
+  image: 'Image'
+  is_primary: 'Primary product image'
+
+  product_details: 'Product details'
+  products_menu: 'Products menu'
+
+  new_product: 'New product'
+  create_product: 'Create product'
+  update_product: 'Update product'
+  editing_product: 'Editing product'
+  listing_products: 'Listing products'
+  listing_product_images: 'Listing product images'
+
+  images_menu: 'Images'
+  add_image: 'Add image'
+  new_image: 'New image'
+  thumbnail: 'Thumbnail'
+  alternative_text: 'Alternative text'
+
+  price: 'Price'
+
+  description: 'Description'
+
+  sku: 'SKU'
+  save: 'Save'
+  cancel: 'Cancel'
+
+  admin:
+    products:
+      name: 'Name'

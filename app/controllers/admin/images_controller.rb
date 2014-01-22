@@ -17,10 +17,13 @@ class Admin::ImagesController < AdminController
     @image = Image.new
     if params[:id].nil?
       @variant = Variant.find(params[:product_id])
+      @cancel_path = admin_product_path(I18n.locale, @variant)
     else
       @variant = Variant.find(params[:id])
+      @cancel_path = admin_product_variant_path(I18n.locale, @variant.master_id, @variant)
     end
     @path = admin_product_images_path
+    @submit_text = t(:create_image)
   end
 
   def create
