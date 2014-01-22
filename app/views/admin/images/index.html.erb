@@ -13,6 +13,8 @@
         <td><%= image_tag image.image_url(:icon) %></td>
         <td><%= image.alternative_text %></td>
         <td class='actions'>
+          <%= link_to '', edit_admin_product_variant_image_path(I18n.locale,@master_variant, @variant, image),
+            :class=>'glyphicon glyphicon-edit btn btn-link' %>&nbsp;
           <%= link_to '', admin_product_variant_image_path(I18n.locale, @master_variant, @variant, image),
                 method: :delete, data: { confirm: t(:are_sure) },
                 class: 'glyphicon glyphicon-trash btn btn-link' %>

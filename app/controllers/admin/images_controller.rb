@@ -12,38 +12,70 @@ class Admin::ImagesController < AdminController
     @variants = Variant.where(:master_id => @master_variant.id)
     @images = @master_variant.images
     
-    unless @variants.empty?
-      @variants.each do |v|
-        @images << v.images unless v.images.empty?
+    # unless @variants.empty?
+    #   @variants.each do |v|
+    #     @images << v.images unless v.images.empty?
+    #   end
+    # end
+  end
+
+  def new
+    if params[:id].nil?
+      @variant = Variant.find(params[:product_id])
+      @master_variant = @variant
+      @cancel_path = admin_product_path(I18n.locale, @variant)
+    else
+      @variant = Variant.find(params[:id])
+      @master_variant = Variant.find(@variant.master_id)
+      @cancel_path = admin_product_variant_path(I18n.locale, @master_variant, @variant)
+    end
+    session[:variant_images_page] = request.env['HTTP_REFERER'] ||
+                                      admin_product_images_path(I18n.locale, @master_variant)
+
+    @image = @variant.images.build
+    @path = admin_product_images_path
+  end
+
+  def edit
+    if params[:variant_id].nil?
+      @variant = Variant.find(params[:product_id])
+      @master_variant = @variant
+      @cancel_path = admin_product_path(I18n.locale, @variant)
+    else
+      @variant = Variant.find(params[:variant_id])
+      @master_variant = Variant.find(@variant.master_id)
+      @cancel_path = admin_product_variant_path(I18n.locale, @master_variant, @variant)
+    end
+    @image = @variant.images.find(params[:id])
+    @path = admin_product_image_path(I18n.locale, @master_variant, @image )
+    session[:variant_images_page] = request.env['HTTP_REFERER'] ||
+                                      admin_product_images_path(I18n.locale, @master_variant)
+  end
+
+  def create
+    @variant = Variant.find(params[:variant_id])
+
+    respond_to do |format|
+      if @variant.images.create(params[:image])
+        format.html { redirect_to session[:variant_images_page], notice: 'Image was successfully created.' }
+      else
+        format.html { render action: "new" }
       end
     end
   end
 
-  def new
-    @image = Image.new
-    if params[:id].nil?
+  def update
+    if params[:variant_id].nil?
       @variant = Variant.find(params[:product_id])
-      @cancel_path = admin_product_path(I18n.locale, @variant)
     else
-      @variant = Variant.find(params[:id])
-      @cancel_path = admin_product_variant_path(I18n.locale, @variant.master_id, @variant)
+      @variant = Variant.find(params[:variant_id])
     end
-    @path = admin_product_images_path
-    @submit_text = t(:create_image)
-  end
-
-  def create
-    @master_variant = Variant.find(params[:product_id])
-    if @master_variant.images.nil?
-      @master_variant.images.build
-    end
-    @image = @master_variant.images.new(params[:image])
-
+    @image = @variant.images.find(params[:id])
     respond_to do |format|
-      if @image.save
-        format.html { redirect_to admin_product_images_path, notice: 'Image was successfully created.' }
+      if @image.update_attributes(params[:image])
+        format.html { redirect_to session[:variant_images_page], notice: 'Image was successfully updated.' }
       else
-        format.html { render action: "new" }
+        format.html { render action: 'new'}
       end
     end
   end
