@@ -3,21 +3,21 @@ class Admin::ProductsController < AdminController
   # GET /products
   # GET /products.json
   def index
-    @variants = Variant.where(is_master: true)
+    @master_variants = Variant.where(is_master: true)
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @variants }
+      format.json { render json: @master_variants }
     end
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
-    @variant = Variant.find(params[:id])
+    @master_variant = Variant.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { redirect_to edit_admin_product_path(I18n.locale, @master_variant)}
       format.json { render json: @variant }
     end
   end
@@ -25,37 +25,39 @@ class Admin::ProductsController < AdminController
   # GET /products/new
   # GET /products/new.json
   def new
-    @variant = Variant.new(is_master: true)
-    @product = @variant.build_product
-    @product.build_image
+    @master_variant = Variant.new(is_master: true)
+    @product = @master_variant.build_product
 
-    @path = admin_products_path
+    @path = admin_products_path(I18n.locale)
+    @submit_text = t(:create_product)
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @variant }
+      format.json { render json: @master_variant }
     end
   end
 
   # GET /products/1/edit
   def edit
-    @variant = Variant.find(params[:id])
-    @path = admin_product_path(@variant)
+    @master_variant = Variant.find(params[:id])
+    @path = admin_product_path(I18n.locale, @master_variant)
+    @submit_text = t(:update_product)
   end
 
   # POST /products
   # POST /products.json
   def create
     params[:variant][:is_master] = true
-    @variant = Variant.new(params[:variant])
+    @master_variant = Variant.new(params[:variant])
 
     respond_to do |format|
-      if @variant.save
-        format.html { redirect_to admin_product_path(@variant), notice: 'Product was successfully created.' }
-        format.json { render json: @variant, status: :created, location: @variant }
+      if @master_variant.save
+        format.html { redirect_to edit_admin_product_path(I18n.locale, @master_variant),
+          notice: 'Product was successfully created.' }
+        format.json { render json: @master_variant, status: :created, location: @master_variant }
       else
         format.html { render action: "new" }
-        format.json { render json: @variant.errors, status: :unprocessable_entity }
+        format.json { render json: @master_variant.errors, status: :unprocessable_entity }
       end
     end
   end

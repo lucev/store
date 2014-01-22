@@ -1,0 +1,12 @@
+<ul class="nav nav-list">  
+  <li class="nav-header"><%= t(:products_menu) %></li>
+  <li><%= link_to ' ' + t(:product_details),
+            edit_admin_product_path(I18n.locale, @master_variant),
+            class: 'glyphicon glyphicon-edit' %></li>  
+  <li><%= link_to ' ' + t(:images),
+            admin_product_images_path(I18n.locale, @master_variant),
+            class: 'glyphicon glyphicon-picture' %></li>
+  <li><%= link_to ' ' + t(:variants),
+                  admin_product_variants_path(I18n.locale, @master_variant),
+                  class: 'glyphicon glyphicon-tags' %></li>
+</ul>
