@@ -2,17 +2,21 @@ Store::Application.routes.draw do
   
   scope "(:locale)", locale: /en|hr/ do
 
-  devise_for :users
+    root :to => 'pages#home'
+    match 'products/:id' => 'variants#show', :as => :product
+    match 'products' => 'pages#home'
 
-  namespace :admin do
+    devise_for :users
 
-    match '/' => 'products#index', :as => :root
-
-    resources :products do
-      resources :variants do
-        resources :images
+    namespace :admin do
+      match '/' => 'products#index', :as => :root
+      resources :products do
+        resources :variants do
+          resources :images#, :only => [:index, :new, :create]
+        end
+        resources :images#, :only => [:index, :new, :create]
       end
-      resources :images
+      #resources :images, :only => [:destroy]
     end
   end
 
