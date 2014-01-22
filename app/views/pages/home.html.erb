@@ -13,7 +13,7 @@
   <tr>
     <td><%= variant.product.name %></td>
     <td><%= variant.product.description %></td>
-    <td><%= link_to 'Show', product_path(variant) %></td>
+    <td><%= link_to 'Show', product_path(I18n.locale, variant) %></td>
   </tr>
 <% end %>
 </table>
