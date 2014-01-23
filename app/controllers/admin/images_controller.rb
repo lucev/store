@@ -2,13 +2,6 @@ class Admin::ImagesController < AdminController
 
   def index
     @master_variant = Variant.find(params[:product_id])
-    
-    if(params[:id])
-      @variant = Variant.find(params[:id])
-    else
-      @variant = @master_variant
-    end
-
     @variants = Variant.where(:master_id => @master_variant.id).order_by(created_at: 'asc')
   end
 
