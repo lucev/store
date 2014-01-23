@@ -1,16 +1,14 @@
 Store::Application.routes.draw do
   
-  resources :line_items
-
-
-  resources :carts
-
-
   scope "(:locale)", locale: /en|hr/ do
+
+    resources :line_items
+    resources :carts, :except => [:show]
 
     root :to => 'pages#home'
     match 'products/:id' => 'variants#show', :as => :product
     match 'products' => 'pages#home'
+    match 'cart' => 'carts#show', :as => :show_cart
 
     devise_for :users
 
