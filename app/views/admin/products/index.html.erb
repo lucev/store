@@ -14,7 +14,7 @@
     <td><%= image_tag variant.images.first.image_url(:icon).to_s unless variant.images.empty? %>
     <td><%= link_to variant.product.name,
               edit_admin_product_path(I18n.locale, variant), class: 'btn btn-link' %></td>
-    <td><%= variant.price %></td>
+    <td><%= number_to_currency(variant.price, locale: I18n.locale) %></td>
     <td class="hidden-xs">
       <%= link_to '', edit_admin_product_path(I18n.locale, variant),
             :class=>'glyphicon glyphicon-edit btn btn-link' %>&nbsp;
