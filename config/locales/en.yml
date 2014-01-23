@@ -47,6 +47,7 @@ en:
   remember_me: 'Remember me'
 
   add_to_cart: 'Add to cart'
+  your_cart_is_empty: 'Your cart is empty'
 
   admin:
     products:

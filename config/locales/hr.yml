@@ -47,6 +47,7 @@ hr:
   remember_me: 'Zapamti me'
 
   add_to_cart: 'Dodaj u košaricu'
+  your_cart_is_empty: 'Vaša košarica je prazna'
 
   admin:
     products:
