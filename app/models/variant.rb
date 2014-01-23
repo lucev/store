@@ -15,10 +15,18 @@ class Variant
 
   embeds_one :product
   embeds_many :images
+  embedded_in :line_item
 
   accepts_nested_attributes_for :product
+
+  before_destroy :ensure_not_referenced_by_any_line_item
 
   def preview_image
     self.images.first
   end
+
+  private
+
+    def ensure_not_referenced_by_any_line_item
+    end
 end
