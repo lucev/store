@@ -7,6 +7,8 @@ class Image
   field :is_primary, type: Boolean
   field :is_product_image, type: Boolean
 
+  validates_presence_of :image
+
   embedded_in :variant
   
   mount_uploader :image, ImageUploader
