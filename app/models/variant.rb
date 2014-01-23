@@ -7,6 +7,12 @@ class Variant
   field :price, type: BigDecimal
   field :is_master, type: Boolean
 
+  validates_presence_of :master_id
+  validates_presence_of :sku
+  validates_uniqueness_of :sku
+  validates_presence_of :price
+  validates_numericality_of :price
+
   embeds_one :product
   embeds_many :images
 
