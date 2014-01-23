@@ -59,7 +59,7 @@ class Admin::ImagesController < AdminController
       if @variant.images.push @image
         format.html { redirect_to session[:variant_images_page], notice: 'Image was successfully created.' }
       else
-        format.html { render action: 'edit'}
+        format.html { render action: 'new'}
       end
     end
   end
@@ -75,7 +75,7 @@ class Admin::ImagesController < AdminController
       if @image.update_attributes(params[:image])
         format.html { redirect_to session[:variant_images_page], notice: 'Image was successfully updated.' }
       else
-        format.html { render action: 'new'}
+        format.html { render action: 'edit'}
       end
     end
   end

@@ -51,6 +51,8 @@ class Admin::ProductsController < AdminController
     @master_variant = Variant.new(params[:variant])
     @master_variant.master_id = @master_variant.id
 
+    @path = admin_products_path
+
     respond_to do |format|
       if @master_variant.save
         format.html { redirect_to edit_admin_product_path(I18n.locale, @master_variant),
@@ -68,6 +70,8 @@ class Admin::ProductsController < AdminController
   def update
     @master_variant = Variant.find(params[:id])
     
+    @path = edit_admin_product_path(@master_variant)
+
     respond_to do |format|
       if @master_variant.update_attributes(params[:variant])
 

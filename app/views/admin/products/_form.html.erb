@@ -1,9 +1,9 @@
 <%= form_for(@master_variant, url: @path, html: {role: 'form'}) do |f| %>
   <% if @master_variant.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@master_variant.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <h3><%= pluralize(@master_variant.errors.count, "error") %> prohibited this product from being saved:</h3>
       <ul>
-      <% @variant.errors.full_messages.each do |msg| %>
+      <% @master_variant.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
