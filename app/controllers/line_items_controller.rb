@@ -40,11 +40,20 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    @line_item = LineItem.new(params[:line_item])
+    @variant = Variant.find(params[:variant_id])
+    @line_item = current_cart.line_items.where('variant._id' => @variant.id).first
+    if @line_item.nil?
+      @line_item = LineItem.new(variant: @variant, quantity: 1)
+      current_cart.line_items.push @line_item
+    else
+      @line_item.quantity += 1
+      @line_item.save
+    end
+
 
     respond_to do |format|
-      if @line_item.save
-        format.html { redirect_to @line_item, notice: 'Line item was successfully created.' }
+      if true
+        format.html { redirect_to :back, notice: 'Line item was successfully created.' }
         format.json { render json: @line_item, status: :created, location: @line_item }
       else
         format.html { render action: "new" }
