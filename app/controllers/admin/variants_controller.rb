@@ -28,8 +28,8 @@ class Admin::VariantsController < AdminController
     @variant = Variant.new
     @master_variant = Variant.find(params[:product_id])
     @variant.price = @master_variant.price
-    @path = admin_product_variants_path(I18n.locale, @master_variant)
-    @cancel_path = admin_product_variants_path(I18n.locale, @master_variant)
+    @path = admin_product_variants_path(@master_variant)
+    @cancel_path = admin_product_variants_path(@master_variant)
 
     respond_to do |format|
       format.html # new.html.erb
@@ -40,8 +40,8 @@ class Admin::VariantsController < AdminController
   # GET /variants/1/edit
   def edit
     @variant = Variant.find(params[:id])
-    @path = admin_product_variant_path(I18n.locale, @variant.master_id, @variant)
-    @cancel_path = request.env['HTTP_REFERER'] || admin_product_variants_path(I18n.locale, @variant.master_id)
+    @path = admin_product_variant_path(@variant.master_id, @variant)
+    @cancel_path = request.env['HTTP_REFERER'] || admin_product_variants_path(@variant.master_id)
   end
 
   # POST /variants
@@ -55,9 +55,9 @@ class Admin::VariantsController < AdminController
 
     respond_to do |format|
       if @variant.save
-        format.html { redirect_to admin_product_variant_path(I18n.locale, @variant.master_id, @variant), notice: 'Variant was successfully created.' }
-        format.json { render json: admin_product_variant_path(I18n.locale, @variant.master_id, @variant),
-                              status: :created, location: admin_product_variant_path(I18n.locale, @variant.master_id, @variant) }
+        format.html { redirect_to admin_product_variant_path(@variant.master_id, @variant), notice: 'Variant was successfully created.' }
+        format.json { render json: admin_product_variant_path(@variant.master_id, @variant),
+                              status: :created, location: admin_product_variant_path(@variant.master_id, @variant) }
       else
         format.html { render action: "new" }
         format.json { render json: @variant.errors, status: :unprocessable_entity }
