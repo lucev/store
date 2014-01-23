@@ -1,5 +1,8 @@
 Store::Application.routes.draw do
   
+  resources :carts
+
+
   scope "(:locale)", locale: /en|hr/ do
 
     root :to => 'pages#home'
