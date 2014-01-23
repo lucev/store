@@ -46,6 +46,8 @@ hr:
   password: 'Lozinka'
   remember_me: 'Zapamti me'
 
+  add_to_cart: 'Dodaj u košaricu'
+
   admin:
     products:
       name: 'Naziv'

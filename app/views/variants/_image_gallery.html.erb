@@ -1,0 +1,16 @@
+<div id='carousel-example-generic' class="carousel slide" data-ride="carousel">
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+  <% @variant.images.each_with_index do |image, index| %>
+    <div class="item<%= ' active' if index == 0 %>">
+      <%= link_to image_tag(image.image_url(:medium)), image.image_url %>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+<% @variant.images.each_with_index do |image, index| %>
+  <%= link_to image_tag(image.image_url(:preview),:class => 'img-thumbnail img-responsive'),
+    '', :'data-target' => '#carousel-example-generic', :'data-slide-to' => "#{index}"  %>
+<% end %>

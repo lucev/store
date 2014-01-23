@@ -46,6 +46,8 @@ en:
   password: 'Password'
   remember_me: 'Remember me'
 
+  add_to_cart: 'Add to cart'
+
   admin:
     products:
       name: 'Name'
