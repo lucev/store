@@ -18,4 +18,7 @@ class Variant
 
   accepts_nested_attributes_for :product
 
+  def preview_image
+    self.images.first
+  end
 end
