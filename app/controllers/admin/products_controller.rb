@@ -28,7 +28,7 @@ class Admin::ProductsController < AdminController
     @master_variant = Variant.new(is_master: true)
     @product = @master_variant.build_product
 
-    @path = admin_products_path(I18n.locale)
+    @path = admin_products_path
     @submit_text = t(:create_product)
 
     respond_to do |format|
