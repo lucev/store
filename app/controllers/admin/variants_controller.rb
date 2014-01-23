@@ -59,6 +59,7 @@ class Admin::VariantsController < AdminController
         format.json { render json: admin_product_variant_path(@variant.master_id, @variant),
                               status: :created, location: admin_product_variant_path(@variant.master_id, @variant) }
       else
+        @path = admin_product_variants_path(@master_variant)
         format.html { render action: "new" }
         format.json { render json: @variant.errors, status: :unprocessable_entity }
       end
@@ -76,6 +77,7 @@ class Admin::VariantsController < AdminController
           notice: 'Variant was successfully updated.' }
         format.json { head :no_content }
       else
+        @path = admin_product_variant_path(@variant.master_id, @variant)
         format.html { render action: "edit" }
         format.json { render json: @variant.errors, status: :unprocessable_entity }
       end
