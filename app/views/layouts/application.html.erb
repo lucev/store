@@ -2,15 +2,23 @@
 <html>
 <head>
   <title>Store</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<p><%= link_to 'Home', root_path %></p>
-
-<%= yield %>
-
+<wrapper>
+  <div id="header">
+  </div>
+  <%= render 'layouts/navbar' %>
+  <div class="container">
+    <%= yield %>
+  </div>
+  <div id="footer">
+  </end>
+<wrapper>
 </body>
 </html>
