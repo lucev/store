@@ -1,5 +1,41 @@
-<p id="notice"><%= notice %></p>
-
-
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+<h1><%= t(:shopping_cart) %></h1>
+<% if @cart.empty? %>
+  <strong><%= t(:your_cart_is_empty) %></strong><br/><br/>
+  <%= link_to t(:continue_shopping), '#', :class => 'btn btn-primary' %>
+<% else %>
+  <table class='table table-striped table-hover'>
+    <tr>
+      <th class='hidden-xs'><%= t(:image) %></th>
+      <th><%= t(:item) %></th>
+      <th><%= t(:price) %></th>
+      <th><%= t(:quantity) %></th>
+      <th><%= t(:total) %></th>
+      <th></th>
+    </tr>
+  <% @cart.line_items.each do |item| %>
+    <tr>
+      <td class='hidden-xs'><%= link_to image_tag(item.variant.preview_image.image_url(:preview)), product_path(item.variant) %></td>
+      <td><%= link_to item.variant.product.name, product_path(item.variant) %></td>
+      <td><%= number_to_currency(item.variant.price, :locale => I18n.locale) %></td>
+      <td><%= item.quantity %></td>
+      <td><%= number_to_currency(item.total, :locale => I18n.locale) %></td>
+      <td><%= link_to '', line_item_path(item), method: :delete,
+                data: { confirm: t(:are_sure) }, :class => 'glyphicon glyphicon-remove btn btn-link' %></td>
+    </tr>
+  <% end %>
+    <tr>
+      <td><%= link_to t(:continue_shopping), '#', :class => 'btn btn-primary' %>&nbsp;
+          <%= link_to t(:empty_cart), cart_path(@cart), method: :delete,
+                data: { confirm: t(:are_sure)}, :class => 'btn btn-default' %>
+      </td>
+      <td></td>
+      <td></td>
+      <td><strong><%= t(:subtotal) %></strong></td>
+      <td><strong><%= number_to_currency(@cart.subtotal, :locale => I18n.locale) %></strong></td>
+      <td><%= link_to '#', :class => 'btn btn-success' do %>
+            <strong><%= t(:checkout) %></strong>
+          <% end %>
+      </td>
+    </tr>
+  </table>
+<% end %>
