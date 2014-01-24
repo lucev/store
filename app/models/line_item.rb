@@ -9,6 +9,7 @@ class LineItem
 
   embeds_one :variant
   embedded_in :cart
+  embedded_in :order
 
   def total
     variant.price * quantity

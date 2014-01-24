@@ -1,5 +1,8 @@
 Store::Application.routes.draw do
   
+  resources :orders
+
+
   scope "(:locale)", locale: /en|hr/ do
 
     resources :line_items
