@@ -28,6 +28,11 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
+    @order.line_items = current_cart.line_items
+    @order.build_address
+    @cart = current_cart
+    @default_address = current_user.default_address
+    @order.address = @default_address
 
     respond_to do |format|
       format.html # new.html.erb
@@ -48,8 +53,10 @@ class OrdersController < ApplicationController
       redirect_to show_cart_url
       return
     else
-      @order = Order.new
+      @order = Order.new(params[:order])
       @order.line_items = current_cart.line_items
+      @address = Address.new(params[:order][:address_attributes])
+      current_user.addresses.push @address unless current_user.has_address @address
     end
 
     respond_to do |format|

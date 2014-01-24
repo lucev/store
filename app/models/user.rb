@@ -7,6 +7,8 @@ class User
 
   has_and_belongs_to_many :roles
 
+  embeds_many :addresses
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -51,4 +53,18 @@ class User
     end
   end
 
+  def default_address
+    self.addresses.first
+  end
+
+  def has_address(address)
+    addresses.where(firstname: address.firstname,
+                    lastname: address.lastname,
+                    address: address.address,
+                    city: address.city,
+                    zipcode: address.zipcode,
+                    phone: address.phone,
+                    country: address.country
+                  ).all.present?
+  end
 end

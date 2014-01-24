@@ -14,6 +14,7 @@ hr:
   product_details: 'Detalji proizvoda'
   products_menu: 'Izbornik proizvoda'
 
+  product: 'Proizvod'
   new_product: 'Novi proizvod'
   create_product: 'Kreiraj proizvod'
   update_product: 'Ažuriraj proizvod'
@@ -56,6 +57,15 @@ hr:
   checkout: 'Naruči proizvode'
   continue_shopping: 'Nastavi kupnju'
   empty_cart: 'Isprazni košaricu'
+  new_order: 'Narudžba'
+
+  firstname: 'Ime'
+  lastname: 'Prezime'
+  address: 'Adresa'
+  shipping_address: 'Adresa dostave'
+  city: 'Grad'
+  zipcode: 'Poštanski broj'
+  country: 'Država'
 
   admin:
     products:

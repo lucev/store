@@ -1,12 +1,10 @@
 Store::Application.routes.draw do
   
-  resources :orders
-
-
   scope "(:locale)", locale: /en|hr/ do
 
     resources :line_items
     resources :carts, :except => [:show]
+    resources :orders, :only => [:new, :create, :show]
 
     root :to => 'pages#home'
     match 'products/:id' => 'variants#show', :as => :product

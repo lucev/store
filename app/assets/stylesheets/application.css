@@ -14,3 +14,10 @@
 @import 'bootstrap.css';
 @import 'bootstrap-glyphicons.css';
 @import 'scaffold.css';
+
+.box {
+  border: solid 1px #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 15px;
+}

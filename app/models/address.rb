@@ -11,5 +11,6 @@ class Address
   field :country, type: String
 
   embedded_in :order
+  embedded_in :user
 
 end

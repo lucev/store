@@ -14,6 +14,7 @@ en:
   product_details: 'Product details'
   products_menu: 'Products menu'
 
+  product: 'Product'
   new_product: 'New product'
   create_product: 'Create product'
   update_product: 'Update product'
@@ -56,6 +57,15 @@ en:
   checkout: 'Checkout'
   continue_shopping: 'Continue shopping'
   empty_cart: 'Empty cart'
+  new_order: 'Order'
+
+  firstname: 'Firstname'
+  lastname: 'Lastname'
+  address: 'Address'
+  shipping_address: 'Shipping address'
+  city: 'City'
+  zipcode: 'Zip code'
+  country: 'Country'
 
   admin:
     products:

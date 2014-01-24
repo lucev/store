@@ -1,0 +1,21 @@
+<div class='box'>
+  <table class="table table-striped table-bordered table-condensed">
+    <tr>
+      <th><%= t(:product) %></th>
+      <th><%= t(:quantity) %></th>
+      <th><%= t(:price) %></th>
+    </tr>
+    <% @cart.line_items.each do |item| %>
+    <tr>    
+      <td><%= item.variant.product.name %></td>
+      <td><%= item.quantity %></td>
+      <td><%= number_to_currency(item.total, locale: I18n.locale) %></td>
+    </tr>      
+    <% end %>
+    <tr>
+      <td></td>
+      <td><strong><%= t(:total) %></strong></td>
+      <td><strong><%= number_to_currency(@cart.subtotal, locale: I18n.locale) %></strong></td>
+    </tr>
+  </table>
+</div>
