@@ -4,12 +4,12 @@ class Cart
 
   embeds_many :line_items
 
-  def total
-    total = 0
+  def subtotal
+    subtotal = 0
     self.line_items.each do |item|
-      total += item.variant.price * item.quantity
+      subtotal += item.variant.price * item.quantity
     end
-    total
+    subtotal
   end
 
   def count_items
