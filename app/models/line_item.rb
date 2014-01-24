@@ -11,7 +11,7 @@ class LineItem
   embedded_in :cart
 
   def total
-    self.variant.price * self.quantity
+    variant.price * quantity
   end
 
 end
