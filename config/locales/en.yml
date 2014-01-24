@@ -48,6 +48,14 @@ en:
 
   add_to_cart: 'Add to cart'
   your_cart_is_empty: 'Your cart is empty'
+  shopping_cart: 'Shopping cart'
+  item: 'Item'
+  quantity: 'Quantity'
+  total: 'Total'
+  subtotal: 'Subtotal'
+  checkout: 'Checkout'
+  continue_shopping: 'Continue shopping'
+  empty_cart: 'Empty cart'
 
   admin:
     products:

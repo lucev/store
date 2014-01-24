@@ -48,6 +48,14 @@ hr:
 
   add_to_cart: 'Dodaj u košaricu'
   your_cart_is_empty: 'Vaša košarica je prazna'
+  shopping_cart: 'Košarica za kupnju'
+  item: 'Primjerak'
+  quantity: 'Količina'
+  total: 'Ukupno'
+  subtotal: 'Suma'
+  checkout: 'Naruči proizvode'
+  continue_shopping: 'Nastavi kupnju'
+  empty_cart: 'Isprazni košaricu'
 
   admin:
     products:
