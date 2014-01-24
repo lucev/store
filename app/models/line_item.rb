@@ -10,4 +10,8 @@ class LineItem
   embeds_one :variant
   embedded_in :cart
 
+  def total
+    self.variant.price * self.quantity
+  end
+
 end
