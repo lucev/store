@@ -74,7 +74,7 @@ class CartsController < ApplicationController
     session[:cart_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to show_cart_path }
+      format.html { redirect_to show_cart_url }
       format.json { head :no_content }
     end
   end
