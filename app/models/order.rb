@@ -7,7 +7,7 @@ class Order
   field :card_expires_on, type: Date
   field :ip_address, type: String
 
-  embeds_one :cart
+  embeds_many :line_items
   embeds_one :address
   has_many :transactions, :class_name => 'OrderTransaction'
 
@@ -18,7 +18,7 @@ class Order
   # validate_on_create :validate_card
 
   def price_in_cents
-    (cart.subtotal*100).round
+    line_items.to_a.sum { |item| (item.total*100).round }
   end
 
   def purchase

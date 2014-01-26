@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
-    @order.cart = current_cart
+    @order.line_items = current_cart.line_items
     @order.build_address
     @cart = current_cart
     @default_address = current_user.default_address
@@ -55,7 +55,7 @@ class OrdersController < ApplicationController
       return
     else
       @order = Order.new(params[:order])
-      @order.cart = current_cart
+      @order.line_items = current_cart.line_items
       @order.ip_address = request.remote_ip
       @address = Address.new(params[:order][:address_attributes])
       current_user.addresses.push @address unless current_user.has_address @address
