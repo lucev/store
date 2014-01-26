@@ -28,6 +28,10 @@ class Order
     line_items.to_a.sum { |item| (item.total*100).round }
   end
 
+  def total
+    line_items.to_a.sum { |item| item.total }
+  end
+
   def purchase
     response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
     hash = {}
