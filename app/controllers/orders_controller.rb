@@ -34,7 +34,7 @@ class OrdersController < ApplicationController
     if current_user.default_address.nil?
       @order.address = Address.new
     else
-      @order.address = @default_address
+      @order.address = current_user.default_address
     end
 
     respond_to do |format|
