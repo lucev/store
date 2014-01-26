@@ -67,6 +67,11 @@ hr:
   zipcode: 'Poštanski broj'
   country: 'Država'
 
+  customer_email: 'Email kupca'
+
+  order_number: 'Br. narudžbe'
+  order: 'Narudžba'
+
   admin:
     products:
       name: 'Naziv'

@@ -67,6 +67,11 @@ en:
   zipcode: 'Zip code'
   country: 'Country'
 
+  customer_email: 'Customer email'
+
+  order_number: 'Order no.'
+  order: 'Order'
+
   admin:
     products:
       name: 'Name'
