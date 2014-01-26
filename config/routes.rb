@@ -4,7 +4,7 @@ Store::Application.routes.draw do
 
     resources :line_items
     resources :carts, :except => [:show]
-    resources :orders, :only => [:new, :create, :show]
+    resources :orders, :except => [:index, :destroy]
 
     root :to => 'pages#home'
     match 'products/:id' => 'variants#show', :as => :product

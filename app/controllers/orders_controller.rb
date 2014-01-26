@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
   # GET /orders/new.json
   def new
     @order = Order.new
-    @order.line_items = current_cart.line_items
+    @order.cart = current_cart
     @order.build_address
     @cart = current_cart
     @default_address = current_user.default_address
@@ -43,6 +43,7 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
+
   end
 
   # POST /orders
@@ -54,15 +55,21 @@ class OrdersController < ApplicationController
       return
     else
       @order = Order.new(params[:order])
-      @order.line_items = current_cart.line_items
+      @order.cart = current_cart
+      @order.ip_address = request.remote_ip
       @address = Address.new(params[:order][:address_attributes])
       current_user.addresses.push @address unless current_user.has_address @address
     end
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render json: @order, status: :created, location: @order }
+        if @order.purchase
+          format.html { redirect_to @order, notice: 'Order was successfully created.' }
+          format.json { render json: @order, status: :created, location: @order }
+        else
+          redirect_to edit_order_url @order
+          break
+        end
       else
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
@@ -75,10 +82,26 @@ class OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
 
+    if current_cart.empty?
+      redirect_to show_cart_url
+      return
+    else
+      # @order = current_cart.order
+      # @order.cart = current_cart
+      @order.ip_address = request.remote_ip
+      @address = Address.new(params[:order][:address_attributes])
+      current_user.addresses.push @address unless current_user.has_address @address
+    end
+
     respond_to do |format|
       if @order.update_attributes(params[:order])
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { head :no_content }
+       if @order.purchase
+          format.html { redirect_to @order, notice: 'Order was successfully created.' }
+          format.json { render json: @order, status: :created, location: @order }
+        else
+          redirect_to edit_order_url @order
+          break
+        end
       else
         format.html { render action: "edit" }
         format.json { render json: @order.errors, status: :unprocessable_entity }

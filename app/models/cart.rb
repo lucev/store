@@ -3,6 +3,7 @@ class Cart
   include Mongoid::Timestamps
 
   embeds_many :line_items
+  embedded_in :order
 
   def subtotal
     self.line_items.to_a.sum { |item| item.total }
