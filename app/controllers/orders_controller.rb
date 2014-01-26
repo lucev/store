@@ -60,6 +60,7 @@ class OrdersController < ApplicationController
       @order = Order.new(params[:order])
       @order.line_items = current_cart.line_items
       @order.ip_address = request.remote_ip
+      @order.customer = current_user
       @address = Address.new(params[:order][:address_attributes])
       current_user.addresses.push @address unless current_user.has_address @address
     end
