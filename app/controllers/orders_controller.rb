@@ -31,8 +31,11 @@ class OrdersController < ApplicationController
     @order.line_items = current_cart.line_items
     @order.build_address
     @cart = current_cart
-    @default_address = current_user.default_address
-    @order.address = @default_address
+    if current_user.default_address.nil?
+      @order.address = Address.new
+    else
+      @order.address = @default_address
+    end
 
     respond_to do |format|
       format.html # new.html.erb
