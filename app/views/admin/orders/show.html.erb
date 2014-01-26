@@ -1,1 +1,26 @@
 <h1><%= "#{t(:order)}: ##{@order.number}" %></h1>
+
+<table class="table table-striped table-bordered table-condensed">
+  <tr>
+    <th><%= t(:image) %></th>
+    <th><%= t(:product) %></th>
+    <th><%= t(:quantity) %></th>
+    <th><%= t(:price) %></th>
+  </tr>
+  <% @order.line_items.each do |item| %>
+  <tr>
+    <td><%= link_to image_tag(item.variant.preview_image.image_url(:icon)),
+              admin_product_variant_path(item.variant.master_id, item.variant) %></td>
+    <td><%= link_to item.variant.product.name,
+              admin_product_variant_path(item.variant.master_id, item.variant) %></td>
+    <td><%= item.quantity %></td>
+    <td><%= number_to_currency(item.total, locale: I18n.locale) %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td><strong><%= t(:total) %></strong></td>
+    <td><strong><%= number_to_currency(@cart.subtotal, locale: I18n.locale) %></strong></td>
+  </tr>
+</table>
