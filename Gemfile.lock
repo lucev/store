@@ -83,6 +83,10 @@ GEM
       moped (~> 1.4)
       origin (~> 1.0)
       tzinfo (~> 0.3.29)
+    mongoid-autoinc (0.3.2)
+      activesupport
+      mongoid (~> 3.0)
+      rake
     mongoid-grid_fs (1.9.0)
       mime-types (~> 1.19)
       mongoid (~> 3.0)
@@ -154,6 +158,7 @@ DEPENDENCIES
   devise
   jquery-rails
   mongoid (~> 3.1.0)
+  mongoid-autoinc (~> 0.3.0)
   rails (= 3.2.15)
   rails-i18n (~> 3.0.0)
   rmagick

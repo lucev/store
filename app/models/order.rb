@@ -1,11 +1,17 @@
+require 'autoinc'
+
 class Order
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::MultiParameterAttributes
+  include Mongoid::Autoinc
 
   field :card_type, type: String
   field :card_expires_on, type: Date
   field :ip_address, type: String
+  field :number, type: String
+
+  increments :number, seed: 1000
 
   embeds_many :line_items
   embeds_one :address
