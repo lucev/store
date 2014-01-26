@@ -8,6 +8,7 @@ class User
   has_and_belongs_to_many :roles
 
   embeds_many :addresses
+  has_many :orders
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable

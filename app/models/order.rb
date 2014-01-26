@@ -16,6 +16,7 @@ class Order
   embeds_many :line_items
   embeds_one :address
   has_many :transactions, :class_name => 'OrderTransaction'
+  belongs_to :customer, :class_name => 'User'
 
   accepts_nested_attributes_for :address
 
