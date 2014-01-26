@@ -21,6 +21,7 @@ Store::Application.routes.draw do
         end
         resources :images#, :only => [:index, :new, :create]
       end
+      resources :orders
       #resources :images, :only => [:destroy]
     end
   end
