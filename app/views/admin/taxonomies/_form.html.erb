@@ -1,4 +1,4 @@
-<%= form_for(@taxonomy, url: admin_taxonomies_path) do |f| %>
+<%= form_for(@taxonomy, url: @path, html: {role: 'form'}) do |f| %>
   <% if @taxonomy.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@taxonomy.errors.count, "error") %> prohibited this taxonomy from being saved:</h2>

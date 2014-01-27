@@ -29,6 +29,8 @@ class Admin::TaxonomiesController < AdminController
     @taxonomy = Taxonomy.new
     @taxonomies = sorted_taxonomies
 
+    @path = admin_taxonomies_path
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @taxonomy }
@@ -38,6 +40,8 @@ class Admin::TaxonomiesController < AdminController
   # GET /taxonomies/1/edit
   def edit
     @taxonomy = Taxonomy.find(params[:id])
+    @path = admin_taxonomy_path(@taxonomy)
+
     @taxonomies = sorted_taxonomies
   end
 
