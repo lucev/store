@@ -11,17 +11,17 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
+  <div class="form-group">
+    <%= f.label :name, t(:name) %><br />
+    <%= f.text_field :name, class: 'form-control' %>
   </div>
   <% unless @taxonomies.empty? %>
-  <div>
-    <%= f.label :parent %><br />
-    <%= f.select :parent, options_from_collection_for_select(@taxonomies, 'id', 'indented_name'), include_blank: true %>
+  <div class='form-group'>
+    <%= f.label :parent, t(:parent) %><br />
+    <%= f.select :parent, options_from_collection_for_select(@taxonomies, 'id', 'indented_name'), include_blank: true, class: 'form-control' %>
   </div>
   <% end %>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit t(:save), class: 'btn btn-primary' %>
   </div>
 <% end %>
