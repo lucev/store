@@ -58,7 +58,7 @@ class Admin::TaxonomiesController < AdminController
 
     respond_to do |format|
       if @taxonomy.save
-        format.html { redirect_to admin_taxonomies_url @taxonomy, notice: 'Taxonomy was successfully created.' }
+        format.html { redirect_to admin_taxonomies_url, notice: 'Taxonomy was successfully created.' }
         format.json { render json: @taxonomy, status: :created, location: @taxonomy }
       else
         format.html { render action: "new" }
@@ -74,7 +74,7 @@ class Admin::TaxonomiesController < AdminController
 
     respond_to do |format|
       if @taxonomy.update_attributes(params[:taxonomy])
-        format.html { redirect_to @taxonomy, notice: 'Taxonomy was successfully updated.' }
+        format.html { redirect_to admin_taxonomies_url, notice: 'Taxonomy was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
