@@ -9,5 +9,6 @@ class Product
 
   embedded_in :variant
   embeds_one :image
+  embeds_many :taxonomies
 
 end

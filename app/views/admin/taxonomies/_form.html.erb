@@ -1,0 +1,27 @@
+<%= form_for(@taxonomy, url: admin_taxonomies_path) do |f| %>
+  <% if @taxonomy.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@taxonomy.errors.count, "error") %> prohibited this taxonomy from being saved:</h2>
+
+      <ul>
+      <% @taxonomy.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <% unless @taxonomies.empty? %>
+  <div>
+    <%= f.label :parent %><br />
+    <%= f.select :parent, options_from_collection_for_select(@taxonomies, 'id', 'indented_name'), include_blank: true %>
+  </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

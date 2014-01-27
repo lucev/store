@@ -20,8 +20,10 @@ Store::Application.routes.draw do
           resources :images#, :only => [:index, :new, :create]
         end
         resources :images#, :only => [:index, :new, :create]
+        resources :taxonomies
       end
       resources :orders
+      resources :taxonomies
       #resources :images, :only => [:destroy]
     end
   end

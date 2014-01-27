@@ -72,6 +72,8 @@ en:
   order_number: 'Order no.'
   order: 'Order'
 
+  taxonomies: 'Taxonomies'
+
   admin:
     products:
       name: 'Name'

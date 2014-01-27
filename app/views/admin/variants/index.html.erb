@@ -1,7 +1,7 @@
 <h1><%= t(:listing_variants) %></h1>
 
-<p>Name: <%= @master_variant.product.name %></p>
-<p>Description: <%= @master_variant.product.description %>
+<p><%= t(:product) %>: <%= link_to @master_variant.product.name, admin_product_path(@master_variant) %></p>
+<p><%= t(:description) %>: <%= @master_variant.product.description %>
 
 <table class="table table-striped table-hover">
   <tr>

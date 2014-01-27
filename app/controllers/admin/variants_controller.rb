@@ -55,7 +55,7 @@ class Admin::VariantsController < AdminController
 
     respond_to do |format|
       if @variant.save
-        format.html { redirect_to admin_product_variant_path(@variant.master_id, @variant), notice: 'Variant was successfully created.' }
+        format.html { redirect_to admin_product_variants_path(@variant.master_id), notice: 'Variant was successfully created.' }
         format.json { render json: admin_product_variant_path(@variant.master_id, @variant),
                               status: :created, location: admin_product_variant_path(@variant.master_id, @variant) }
       else
@@ -91,7 +91,7 @@ class Admin::VariantsController < AdminController
     @variant.destroy
 
     respond_to do |format|
-      format.html { redirect_to variants_url }
+      format.html { redirect_to admin_product_variants_url(@variant.master_id) }
       format.json { head :no_content }
     end
   end

@@ -72,6 +72,8 @@ hr:
   order_number: 'Br. narudžbe'
   order: 'Narudžba'
 
+  taxonomies: 'Kategorizacija'
+
   admin:
     products:
       name: 'Naziv'
