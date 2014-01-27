@@ -7,10 +7,7 @@
 
 <% @taxonomies.each do |taxonomy| %>
   <tr>
-    <td><%= taxonomy.name %></td>
-    <td><%= link_to 'Show', admin_taxonomies_path(taxonomy) %></td>
-    <td><%= link_to 'Edit', edit_admin_taxonomy_path(taxonomy) %></td>
-    <td><%= link_to 'Destroy', admin_taxonomy_path(taxonomy), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to taxonomy.indented_name, edit_admin_taxonomy_path(taxonomy) %></td>
   </tr>
 <% end %>
 </table>
