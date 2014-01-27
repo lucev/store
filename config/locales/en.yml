@@ -73,6 +73,10 @@ en:
   order: 'Order'
 
   taxonomies: 'Taxonomies'
+  new_taxonomy: 'New taxonomy'
+  edit_taxonomy: 'Edit taxonomy'
+  parent: 'Parent'
+  name: 'Name'
 
   admin:
     products:

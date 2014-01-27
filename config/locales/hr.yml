@@ -73,6 +73,10 @@ hr:
   order: 'Narudžba'
 
   taxonomies: 'Kategorizacija'
+  new_taxonomy: 'Nova kategorizacija'
+  edit_taxonomy: 'Uredi kategorizaciju'
+  parent: 'Roditelj'
+  name: 'Naziv'
 
   admin:
     products:

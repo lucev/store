@@ -1,11 +1,8 @@
-<h1>Listing taxonomies</h1>
+<h1><%= t(:taxonomies) %></h1>
 
 <table class='table table-striped table-hover table-condensed'>
   <tr>
-    <th>Name</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th><%= t(:name) %></th>
   </tr>
 
 <% @taxonomies.each do |taxonomy| %>
