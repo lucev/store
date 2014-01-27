@@ -12,7 +12,7 @@ class Taxonomy
   has_and_belongs_to_many :descendants, :class_name => 'Taxonomy', inverse_of: :ancestors
 
   def indented_name
-    "..." * ancestors.count + ' ' + name
+    ("<span>&nbsp;&nbsp;&nbsp;&nbsp;</span>" * ancestors.count + name).html_safe
   end
 
   def has_children?

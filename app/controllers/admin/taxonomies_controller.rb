@@ -1,10 +1,10 @@
 class Admin::TaxonomiesController < AdminController
+  include Admin::TaxonomiesHelper
+
   # GET /taxonomies
   # GET /taxonomies.json
   def index
-    @master_variant = Variant.find(params[:product_id])
-    @taxonomies = @master_variant.product.taxonomies
-
+    @taxonomies = sorted_taxonomies
 
     respond_to do |format|
       format.html # index.html.erb
@@ -27,12 +27,7 @@ class Admin::TaxonomiesController < AdminController
   # GET /taxonomies/new.json
   def new
     @taxonomy = Taxonomy.new
-    @taxonomies = []
-    @root_taxonomies = Taxonomy.where(parent_id: nil).order_by('created_at ASC')
-    @root_taxonomies.each do |taxonomy|
-      taxonomy.get_descendants(@taxonomies)
-    end
-    # @taxonomies = Taxonomy.all
+    @taxonomies = sorted_taxonomies
 
     respond_to do |format|
       format.html # new.html.erb
@@ -43,6 +38,7 @@ class Admin::TaxonomiesController < AdminController
   # GET /taxonomies/1/edit
   def edit
     @taxonomy = Taxonomy.find(params[:id])
+    @taxonomies = sorted_taxonomies
   end
 
   # POST /taxonomies
