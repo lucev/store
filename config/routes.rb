@@ -20,7 +20,7 @@ Store::Application.routes.draw do
           resources :images#, :only => [:index, :new, :create]
         end
         resources :images#, :only => [:index, :new, :create]
-        resources :taxonomies
+        resources :taxonomies, :controller => 'product_taxonomies'
       end
       resources :orders
       resources :taxonomies
