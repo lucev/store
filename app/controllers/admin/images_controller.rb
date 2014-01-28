@@ -9,15 +9,15 @@ class Admin::ImagesController < AdminController
     if params[:id].nil?
       @variant = Variant.find(params[:product_id])
       @master_variant = @variant
-      @cancel_path = admin_product_path(I18n.locale, @variant)
+      @cancel_path = admin_product_path(@variant)
     else
       @variant = Variant.find(params[:id])
       @master_variant = Variant.find(@variant.master_id)
-      @cancel_path = admin_product_variant_path(I18n.locale, @master_variant, @variant)
+      @cancel_path = admin_product_variant_path(@master_variant, @variant)
     end
     @variants = Variant.where(master_id: @master_variant.id).order_by(created_at: 'asc')
     session[:variant_images_page] = request.env['HTTP_REFERER'] ||
-                                      admin_product_images_path(I18n.locale, @master_variant)
+                                      admin_product_images_path(@master_variant)
 
     @image = @variant.images.build
     @path = admin_product_images_path
@@ -27,16 +27,16 @@ class Admin::ImagesController < AdminController
     if params[:variant_id].nil?
       @variant = Variant.find(params[:product_id])
       @master_variant = @variant
-      @cancel_path = admin_product_path(I18n.locale, @variant)
+      @cancel_path = admin_product_path(@variant)
     else
       @variant = Variant.find(params[:variant_id])
       @master_variant = Variant.find(@variant.master_id)
-      @cancel_path = admin_product_variant_path(I18n.locale, @master_variant, @variant)
+      @cancel_path = admin_product_variant_path(@master_variant, @variant)
     end
     @image = @variant.images.find(params[:id])
-    @path = admin_product_image_path(I18n.locale, @master_variant, @image )
+    @path = admin_product_image_path(@master_variant, @image )
     session[:variant_images_page] = request.env['HTTP_REFERER'] ||
-                                      admin_product_images_path(I18n.locale, @master_variant)
+                                      admin_product_images_path(@master_variant)
   end
 
   def create
@@ -80,7 +80,7 @@ class Admin::ImagesController < AdminController
     @image.delete
 
     respond_to do |format|
-      format.html { redirect_to admin_products_url(I18n.locale) }
+      format.html { redirect_to admin_products_url }
       format.json { head :no_content }
     end
   end
