@@ -74,6 +74,7 @@ hr:
 
   taxonomies: 'Kategorizacija'
   new_taxonomy: 'Nova kategorizacija'
+  add_taxonomy: 'Dodaj kategorizaciju'
   edit_taxonomy: 'Uredi kategorizaciju'
   parent: 'Roditelj'
   name: 'Naziv'

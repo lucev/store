@@ -74,6 +74,7 @@ en:
 
   taxonomies: 'Taxonomies'
   new_taxonomy: 'New taxonomy'
+  add_taxonomy: 'Add taxonomy'
   edit_taxonomy: 'Edit taxonomy'
   parent: 'Parent'
   name: 'Name'
