@@ -15,7 +15,6 @@ class Variant
 
   embeds_one :product
   embeds_many :images
-  has_and_belongs_to_many :taxonomies
 
   accepts_nested_attributes_for :product
 

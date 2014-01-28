@@ -4,8 +4,6 @@ class Taxonomy
 
   field :name, type: String
 
-  has_and_belongs_to_many :variants
-
   belongs_to :parent, :class_name => 'Taxonomy', inverse_of: :children
   has_many :children, :class_name => 'Taxonomy', inverse_of: :parent
   has_and_belongs_to_many :ancestors, :class_name => 'Taxonomy', inverse_of: :descendants
