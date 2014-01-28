@@ -90,7 +90,7 @@ class Admin::TaxonomiesController < AdminController
     @taxonomy.destroy
 
     respond_to do |format|
-      format.html { redirect_to taxonomies_url }
+      format.html { redirect_to admin_taxonomies_url }
       format.json { head :no_content }
     end
   end
