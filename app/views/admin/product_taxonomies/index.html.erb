@@ -1,0 +1,12 @@
+<h1><%= t(:taxonomies) %></h1>
+
+<div class='col-lg-6'>
+  <%= render 'admin/shared/taxonomies_table' %>
+  <%= link_to new_admin_product_taxonomy_path, :class => 'btn btn-primary' do %>
+    <span class='glyphicon glyphicon-plus'></span> <%= t(:add_taxonomy) %>
+  <% end %>
+</div>
+
+<div class='col-lg-4'>
+  <%= render 'admin/shared/products_menu' %>
+</div>

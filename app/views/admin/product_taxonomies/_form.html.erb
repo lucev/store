@@ -1,0 +1,14 @@
+<%= form_for(@master_variant, url: admin_product_taxonomy_path(@master_variant, @taxonomy.id)) do |f| %>
+
+  <% unless @taxonomies.empty? %>
+    <%= f.fields_for :taxonomy do |p| %>
+      <div class='form-group'>
+        <%= p.label :taxonomy, t(:taxonomy) %><br />
+        <%= p.select :taxonomy, options_from_collection_for_select(@taxonomies, 'id', 'indented_name'), include_blank: true, class: 'form-control' %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="actions">
+    <%= f.submit t(:save), class: 'btn btn-primary' %>
+  </div>
+<% end %>

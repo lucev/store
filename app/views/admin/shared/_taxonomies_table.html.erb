@@ -1,0 +1,17 @@
+<table class='table table-striped table-hover table-condensed'>
+  <tr>
+    <th><%= t(:name) %></th>
+    <th></th>
+  </tr>
+
+<% @taxonomies.each do |taxonomy| %>
+  <tr>
+    <td><%= link_to taxonomy.indented_name, edit_admin_taxonomy_path(taxonomy) %></td>
+    <td class='actions'>
+      <%= link_to '', admin_product_taxonomy_path(@master_variant, taxonomy),
+                method: :delete, data: { confirm: t(:are_sure) },
+                class: 'glyphicon glyphicon-trash btn btn-link' %>
+        </td>
+  </tr>
+<% end %>
+</table>
