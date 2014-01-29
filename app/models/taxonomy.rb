@@ -17,11 +17,15 @@ class Taxonomy
     children.present?
   end
 
-  def get_descendants(array)
-    array << self
+  def get_descendants(array=[])
+    array << self unless self.is_root?
     self.children.each do |taxonomy|
       taxonomy.get_descendants(array)
     end
     array
+  end
+
+  def is_root?
+    self.parent.nil?
   end
 end

@@ -5,6 +5,9 @@ class Admin::ProductsController < AdminController
   def index
     @master_variants = Variant.where(is_master: true)
 
+    # @variants = []
+
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @master_variants }
