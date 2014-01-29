@@ -50,12 +50,15 @@
     }
 
     .content {
-      margin-left: 200px; /* If you adjusted the width above you will need to adjust this as well */
       min-height: 100%;
     }
 
     .container {
       margin-left: 25px; /* We will add a little cushion to our content between the menu bar */
+    }
+
+    .shifted-content {
+      margin-left: 200px; /* If you adjusted the width above you will need to adjust this as well */
     }
 }
 
