@@ -9,7 +9,6 @@
       <%= submit_tag "Search", class: 'btn btn-default' %>
     <% end %>
   </div>
-  <%= @root_taxonomies.count %>
   <% @variants.each do |variant| %>
     <div class='col-xs-12 col-sm-6 col-md-4 col-lg-2'>
       <%= link_to image_tag(variant.images.first.image_url(:thumb), class: 'img-thumbnail img-responsive'),       product_path(variant) %><br/>
