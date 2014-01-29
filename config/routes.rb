@@ -1,5 +1,5 @@
 Store::Application.routes.draw do
-  
+
   scope "(:locale)", locale: /en|hr/ do
 
     resources :line_items
@@ -24,6 +24,7 @@ Store::Application.routes.draw do
       end
       resources :orders
       resources :taxonomies
+      resources :option_types
       #resources :images, :only => [:destroy]
     end
   end

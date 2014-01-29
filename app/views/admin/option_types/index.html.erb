@@ -1,0 +1,21 @@
+<h1>Listing admin_option_types</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @admin_option_types.each do |admin_option_type| %>
+  <tr>
+    <td><%= link_to 'Show', admin_option_type %></td>
+    <td><%= link_to 'Edit', edit_admin_option_type_path(admin_option_type) %></td>
+    <td><%= link_to 'Destroy', admin_option_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Option type', new_admin_option_type_path %>
