@@ -1,16 +1,20 @@
-<%= form_for(@admin_option_type) do |f| %>
-  <% if @admin_option_type.errors.any? %>
+<%= form_for(@option_type, url: @path, html: {role: 'form'}) do |f| %>
+  <% if @option_type.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@admin_option_type.errors.count, "error") %> prohibited this admin_option_type from being saved:</h2>
+      <h2><%= pluralize(@option_type.errors.count, "error") %> prohibited this admin_option_type from being saved:</h2>
 
       <ul>
-      <% @admin_option_type.errors.full_messages.each do |msg| %>
+      <% @option_type.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
+  <div class="form-group">
+    <%= f.label :name, t(:name) %><br />
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

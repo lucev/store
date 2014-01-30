@@ -79,6 +79,8 @@ hr:
   parent: 'Roditelj'
   name: 'Naziv'
 
+  option_types: 'Mogućnosti izbora'
+
   admin:
     products:
       name: 'Naziv'

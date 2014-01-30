@@ -79,6 +79,8 @@ en:
   parent: 'Parent'
   name: 'Name'
 
+  option_types: 'Option types'
+
   admin:
     products:
       name: 'Name'

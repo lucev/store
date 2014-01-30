@@ -21,6 +21,7 @@ Store::Application.routes.draw do
         end
         resources :images#, :only => [:index, :new, :create]
         resources :taxonomies, :controller => 'product_taxonomies'
+        resources :option_types, :controller => 'product_option_types'
       end
       resources :orders
       resources :taxonomies

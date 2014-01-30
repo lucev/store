@@ -33,7 +33,7 @@ class Admin::ProductTaxonomiesController < AdminController
     @master_variant = Variant.find(params[:product_id])
     @taxonomy = @master_variant.product.taxonomies.find(params[:id])
     @master_variant.product.taxonomies.find(@taxonomy.children).delete rescue ''
-    @master_variant.product.taxonomies.find(@taxonomy.id).delete rescue ''
+    @master_variant.product.taxonomies.delete(@taxonomy) rescue ''
 
     respond_to do |format|
       format.html { redirect_to admin_product_taxonomies_url(@master_variant), notice: 'Taxonomy was successfull removed.'}

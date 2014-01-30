@@ -1,0 +1,29 @@
+<h1><%= t(:option_types) %></h1>
+
+<div class='col-lg-6'>
+  
+  <table class='table table-striped table-hover table-condensed'>
+    <tr>
+      <th><%= t(:name) %></th>
+      <th></th>
+    </tr>
+
+  <% @option_types.each do |option_type| %>
+    <tr>
+      <td><%= link_to option_type.name, edit_admin_option_type_path(option_type) %></td>
+      <td class='actions'>
+        <%= link_to '', admin_product_option_type_path(@master_variant, option_type),
+                  method: :delete, data: { confirm: t(:are_sure) },
+                  class: 'glyphicon glyphicon-trash btn btn-link' %>
+          </td>
+    </tr>
+  <% end %>
+  </table>
+  <%= link_to new_admin_product_option_type_path, :class => 'btn btn-primary' do %>
+    <span class='glyphicon glyphicon-plus'></span> <%= t(:add_option_type) %>
+  <% end %>
+</div>
+
+<div class='col-lg-4'>
+  <%= render 'admin/shared/products_menu' %>
+</div>

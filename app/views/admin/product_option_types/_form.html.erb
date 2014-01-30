@@ -1,0 +1,14 @@
+<%= form_for(@master_variant, url: admin_product_option_types_path(@master_variant.id), method: :create) do |f| %>
+
+  <% unless @option_types.empty? %>
+    <%= f.fields_for :option_type do |p| %>
+      <div class='form-group'>
+        <%= p.label :id, t(:option_type) %><br />
+        <%= p.select :id, options_from_collection_for_select(@option_types, 'id', 'name'), include_blank: true, class: 'form-control' %>
+      </div>
+    <% end %>
+  <% end %>
+  <div class="actions">
+    <%= f.submit t(:save), class: 'btn btn-primary' %>
+  </div>
+<% end %>

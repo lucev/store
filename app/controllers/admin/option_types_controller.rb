@@ -1,54 +1,56 @@
-class Admin::OptionTypesController < ApplicationController
+class Admin::OptionTypesController < AdminController
   # GET /admin/option_types
   # GET /admin/option_types.json
   def index
-    @admin_option_types = Admin::OptionType.all
+    @option_types = OptionType.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @admin_option_types }
+      format.json { render json: @option_types }
     end
   end
 
   # GET /admin/option_types/1
   # GET /admin/option_types/1.json
   def show
-    @admin_option_type = Admin::OptionType.find(params[:id])
+    @option_type = OptionType.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @admin_option_type }
+      format.json { render json: @option_type }
     end
   end
 
   # GET /admin/option_types/new
   # GET /admin/option_types/new.json
   def new
-    @admin_option_type = Admin::OptionType.new
+    @option_type = OptionType.new
+    @path = admin_option_types_path
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @admin_option_type }
+      format.json { render json: @option_type }
     end
   end
 
   # GET /admin/option_types/1/edit
   def edit
-    @admin_option_type = Admin::OptionType.find(params[:id])
+    @option_type = OptionType.find(params[:id])
+    @path = admin_option_type_path(@option_type)
   end
 
   # POST /admin/option_types
   # POST /admin/option_types.json
   def create
-    @admin_option_type = Admin::OptionType.new(params[:admin_option_type])
+    @option_type = OptionType.new(params[:option_type])
 
     respond_to do |format|
-      if @admin_option_type.save
-        format.html { redirect_to @admin_option_type, notice: 'Option type was successfully created.' }
-        format.json { render json: @admin_option_type, status: :created, location: @admin_option_type }
+      if @option_type.save
+        format.html { redirect_to admin_option_types_url, notice: 'Option type was successfully created.' }
+        format.json { render json: @option_type, status: :created, location: @option_type }
       else
         format.html { render action: "new" }
-        format.json { render json: @admin_option_type.errors, status: :unprocessable_entity }
+        format.json { render json: @option_type.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,15 +58,15 @@ class Admin::OptionTypesController < ApplicationController
   # PUT /admin/option_types/1
   # PUT /admin/option_types/1.json
   def update
-    @admin_option_type = Admin::OptionType.find(params[:id])
+    @option_type = OptionType.find(params[:id])
 
     respond_to do |format|
-      if @admin_option_type.update_attributes(params[:admin_option_type])
-        format.html { redirect_to @admin_option_type, notice: 'Option type was successfully updated.' }
+      if @option_type.update_attributes(params[:option_type])
+        format.html { redirect_to admin_option_types_url, notice: 'Option type was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @admin_option_type.errors, status: :unprocessable_entity }
+        format.json { render json: @option_type.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,8 +74,8 @@ class Admin::OptionTypesController < ApplicationController
   # DELETE /admin/option_types/1
   # DELETE /admin/option_types/1.json
   def destroy
-    @admin_option_type = Admin::OptionType.find(params[:id])
-    @admin_option_type.destroy
+    @option_type = OptionType.find(params[:id])
+    @option_type.destroy
 
     respond_to do |format|
       format.html { redirect_to admin_option_types_url }
