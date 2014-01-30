@@ -37,6 +37,8 @@ class Admin::OptionTypesController < AdminController
   def edit
     @option_type = OptionType.find(params[:id])
     @path = admin_option_type_path(@option_type)
+
+    @option_value = OptionValue.new
   end
 
   # POST /admin/option_types
@@ -81,5 +83,24 @@ class Admin::OptionTypesController < AdminController
       format.html { redirect_to admin_option_types_url }
       format.json { head :no_content }
     end
+  end
+
+  def create_value
+    @option_type = OptionType.find(params[:option_type_id])
+    @option_value = OptionValue.new(params[:option_value])
+
+    @option_type.option_values << @option_value
+    @option_type.save
+
+    redirect_to edit_admin_option_type_path(@option_type)
+  end
+
+  def destroy_value
+    @option_type = OptionType.find(params[:option_type_id])
+    @option_value = OptionValue.find(params[:id])
+
+    @option_type.option_values.find(@option_value.id).delete
+
+    redirect_to edit_admin_option_type_path(@option_type)
   end
 end

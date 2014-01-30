@@ -11,5 +11,6 @@ class Product
   embeds_one :image
   has_and_belongs_to_many :taxonomies
   has_and_belongs_to_many :option_types
+  has_and_belongs_to_many :option_values
 
 end

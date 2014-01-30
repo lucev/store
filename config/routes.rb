@@ -15,6 +15,9 @@ Store::Application.routes.draw do
 
     namespace :admin do
       match '/' => 'products#index', :as => :root
+      post '/option_types/:option_type_id/option_values' => 'option_types#create_value', :as => :option_values
+      delete '/option_types/:option_type_id/option_values/:id' => 'option_types#destroy_value', :as => :option_value
+
       resources :products do
         resources :variants do
           resources :images#, :only => [:index, :new, :create]
