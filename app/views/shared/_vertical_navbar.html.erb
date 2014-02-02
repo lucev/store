@@ -14,15 +14,33 @@
   <%= form_tag products_path, :method => :get do %>
     <% root_taxonomies.each_with_index do |root_taxonomy, index| %>
       <li class="panel dropdown">
-        <a data-toggle="collapse" data-parent="#menu-bar" href="#collapse<%= index %>">
+        <a data-toggle="collapse" data-parent="#menu-bar" href="#collapse_taxonomy_<%= index %>">
           <%= root_taxonomy.name %>
         </a>
-        <ul id="collapse<%= index %>" class="panel-collapse collapse taxonomy-select"> <!-- Notice the ID of this element must match the href attribute in the <a> element above it. Also we have added the panel-collapse class -->
+        <ul id="collapse_taxonomy_<%= index %>" class="panel-collapse collapse taxonomy-select"> <!-- Notice the ID of this element must match the href attribute in the <a> element above it. Also we have added the panel-collapse class -->
           <% root_taxonomy.get_descendants.each do |taxonomy| %>
             <li>
               <label>
-              <%= check_box_tag 'taxonomies[]', taxonomy.id %>&nbsp;
+              <%= check_box_tag "taxonomies[]#{taxonomy.parent.name}[]", taxonomy.id %>&nbsp;
               <span class='btn-link'><%= taxonomy.name %></span>
+              </label>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+      <hr/>
+    <% end %>
+    <% @option_types.each_with_index do |option_type, index| %>
+      <li class="panel dropdown">
+        <a data-toggle="collapse" data-parent="#menu-bar" href="#collapse_option_type_<%= index %>">
+          <%= option_type.name %>
+        </a>
+        <ul id="collapse_option_type_<%= index %>" class="panel-collapse collapse taxonomy-select"> <!-- Notice the ID of this element must match the href attribute in the <a> element above it. Also we have added the panel-collapse class -->
+          <% option_type.option_values.each do |option_value| %>
+            <li>
+              <label>
+              <%= check_box_tag "option_values[]#{option_type.name}[]", option_value.id %>&nbsp;
+              <span class='btn-link'><%= option_value.name %></span>
               </label>
             </li>
           <% end %>
