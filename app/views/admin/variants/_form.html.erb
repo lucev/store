@@ -19,6 +19,21 @@
     <%= f.label :price, t(:price) %><br />
     <%= f.text_field :price, class: 'form-control' %>
   </div>
+  <% unless @master_variant.product.option_types.empty? %>
+    <table class='table table-striped table-hover table-condensed'>
+      <tr>
+        <th><%= t(:option_type) %></th>
+        <th></th>
+      </tr>
+      <% @master_variant.product.option_types.each do |option_type| %>
+      <tr>
+        <td><%= link_to option_type.name, edit_admin_product_variant_option_value_path(@master_variant, @variant.id, option_type) %></td>
+        <td><%#= link_to 'Destroy', admin_option_value_path(@option_type, option_value), method: :delete, data: { confirm: t(:are_sure) } %></td>
+      </tr>
+      <% end %>
+    </table>
+  <% end %>
+
   <div class="actions">
     <%= f.submit t(:save), class: 'btn btn-primary' %>
     <%= link_to t(:cancel), @cancel_path, class: 'btn btn-link' %>

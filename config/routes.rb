@@ -21,6 +21,7 @@ Store::Application.routes.draw do
       resources :products do
         resources :variants do
           resources :images#, :only => [:index, :new, :create]
+          resources :option_values, :controller => 'variant_option_values'
         end
         resources :images#, :only => [:index, :new, :create]
         resources :taxonomies, :controller => 'product_taxonomies'

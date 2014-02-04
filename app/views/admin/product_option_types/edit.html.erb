@@ -24,7 +24,7 @@
       <%= p.label :id, t(:option_value) %><br />
       <%= p.select :id, options_from_collection_for_select(@option_type.option_values, 'id', 'descriptive_name'), include_blank: true, class: 'form-control' %>
     </div>
-  <% end %> 
+  <% end %>
   <div class='actions'>
     <%= f.submit %>
   </div>

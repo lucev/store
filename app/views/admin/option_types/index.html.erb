@@ -1,9 +1,8 @@
-<h1>Listing admin_option_types</h1>
+<h1><%= t(:option_types) %></h1>
 
 <table class='table table-striped table-hover'>
   <tr>
     <th><%= t(:name) %></th>
-    <th></th>
     <th></th>
     <th></th>
   </tr>
@@ -11,13 +10,17 @@
 <% @option_types.each do |option_type| %>
   <tr>
     <td><%= link_to option_type.name, edit_admin_option_type_path(option_type) %></td>
-    <td><%= link_to 'Show', admin_option_type_path(option_type) %></td>
-    <td><%= link_to 'Edit', edit_admin_option_type_path(option_type) %></td>
-    <td><%= link_to 'Destroy', admin_option_type_path(option_type), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td></td>
+    <td><%= link_to '', edit_admin_option_type_path(option_type),
+              :class=>'glyphicon glyphicon-edit btn btn-link'  %>&nbsp;
+            <%= link_to '', admin_option_type_path(option_type), method: :delete,
+                  data: { confirm: 'Are you sure?' }, :class => 'glyphicon glyphicon-trash btn btn-link' %>
+    </td>
   </tr>
 <% end %>
 </table>
 
-<br />
+<%= link_to new_admin_option_type_path, :class => 'btn btn-primary' do %>
+  <span class='glyphicon glyphicon-plus'></span> <%= t(:new_option_type) %>
+<% end %>
 
-<%= link_to 'New Option type', new_admin_option_type_path %>

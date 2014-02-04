@@ -14,8 +14,8 @@ class Admin::ProductOptionTypesController < AdminController
   def edit
     @master_variant = Variant.find(params[:product_id])
     @option_type = OptionType.find(params[:id])
-    @option_value = OptionValue.new
-    @product_option_values = @master_variant.product.option_values.where(option_type_id: @option_type.id)
+    # @option_value = OptionValue.new
+    # @product_option_values = @master_variant.product.option_values.where(option_type_id: @option_type.id)
   end
 
   def create

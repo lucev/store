@@ -25,6 +25,7 @@ class Admin::OptionTypesController < AdminController
   # GET /admin/option_types/new.json
   def new
     @option_type = OptionType.new
+    @option_value = OptionValue.new
     @path = admin_option_types_path
 
     respond_to do |format|
@@ -39,6 +40,7 @@ class Admin::OptionTypesController < AdminController
     @path = admin_option_type_path(@option_type)
 
     @option_value = OptionValue.new
+    @action = :edit
   end
 
   # POST /admin/option_types

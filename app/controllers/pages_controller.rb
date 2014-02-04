@@ -2,7 +2,8 @@ class PagesController < ApplicationController
   include Admin::TaxonomiesHelper
 
   def home
-    @variants = Variant.where(:is_master => :true)
+    # @variants = Variant.where(:is_master => :true)
+    @variants = Variant.all
     if params[:taxonomies].present?
       taxonomy_ids = []
       params[:taxonomies].each do |parent_taxonomy|
@@ -35,7 +36,7 @@ class PagesController < ApplicationController
 
       option_value_selector = nil
       option_value_ids.each_with_index do |ids, index|
-        option_value_selector = Variant.in({'product.option_value_ids' => option_value_ids[index]}).selector,
+        option_value_selector = Variant.in({'option_value_ids' => option_value_ids[index]}).selector,
                                   option_value_selector
       end
       @variants = @variants.and(option_value_selector)

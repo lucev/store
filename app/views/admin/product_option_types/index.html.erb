@@ -10,7 +10,7 @@
 
   <% @option_types.each do |option_type| %>
     <tr>
-      <td><%= link_to option_type.name, edit_admin_product_option_type_path(@master_variant, option_type) %></td>
+      <td><%= link_to option_type.name, '#' %></td>
       <td class='actions'>
         <%= link_to '', admin_product_option_type_path(@master_variant, option_type),
                   method: :delete, data: { confirm: t(:are_sure) },
@@ -24,6 +24,6 @@
   <% end %>
 </div>
 
-<div class='col-lg-4'>
+<div class='col-lg-offset-3 col-lg-3 '>
   <%= render 'admin/shared/products_menu' %>
 </div>

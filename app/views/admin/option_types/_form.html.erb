@@ -16,29 +16,33 @@
     <%= f.text_field :name, class: 'form-control' %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit t(:save) %>
   </div>
 <% end %>
 
-<table class='table table-striped table-hover table-condensed'>
-  <tr>
-    <th></th>
-    <th></th>
-  </tr>
-  <% @option_type.option_values.each do |option_value| %>
-  <tr>
-    <td><%= option_value.name %></td>
-    <td><%= link_to 'Destroy', admin_option_value_path(@option_type, option_value), method: :delete, data: { confirm: t(:are_sure) } %></td>
-  </tr>
-  <% end %>
-</table>
+<% unless @option_type.option_values.empty? %>
+  <table class='table table-striped table-hover table-condensed'>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+    <% @option_type.option_values.each do |option_value| %>
+    <tr>
+      <td><%= option_value.name %></td>
+      <td><%= link_to '', admin_option_value_path(@option_type, option_value), method: :delete, data: { confirm: t(:are_sure) }, :class => 'glyphicon glyphicon-trash btn btn-link' %></td>
+    </tr>
+    <% end %>
+  </table>
+<% end %>
 
-<%= form_for(@option_value, url: admin_option_values_path(@option_type), html: {role: 'form'}) do |f| %>
-  <div class='form-group'>
-    <%= f.label :name, t(:name) %><br />
-    <%= f.text_field :name, class: 'form-control' %>
-  </div>
-  <div class='actions'>
-    <%= f.submit %>
-  </div>
+<% if @action == :edit %>
+  <%= form_for(@option_value, url: admin_option_values_path(@option_type.id), html: {role: 'form'}) do |f| %>
+    <div class='form-group'>
+      <%= f.label :name, t(:name) %><br />
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+    <div class='actions'>
+      <%= f.submit t(:save) %>
+    </div>
+  <% end %>
 <% end %>

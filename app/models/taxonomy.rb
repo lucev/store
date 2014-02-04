@@ -19,6 +19,7 @@ class Taxonomy
 
   def get_descendants(array=[])
     array << self unless self.is_root?
+    # array << self
     self.children.each do |taxonomy|
       taxonomy.get_descendants(array)
     end

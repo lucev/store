@@ -76,10 +76,17 @@ hr:
   new_taxonomy: 'Nova kategorizacija'
   add_taxonomy: 'Dodaj kategorizaciju'
   edit_taxonomy: 'Uredi kategorizaciju'
+  taxonomy: 'Kategorizacija'
   parent: 'Roditelj'
   name: 'Naziv'
 
-  option_types: 'Mogućnosti izbora'
+  option_types: 'Karakteristike'
+  add_option_type: 'Dodaj karakteristiku'
+  new_option_type: 'Nova karakteristika proizvoda'
+  option_type: 'Karakteristika'
+  option_value: 'Vrijednost karakteristike'
+
+  order_successfully_created: 'Narudžba je uspješno kreirana'
 
   admin:
     products:

@@ -1,0 +1,15 @@
+<%= @master_variant.product.name %><br/>
+<%= @variant.sku %><br/>
+<%= @option_type.name %>
+
+<%= form_for(@option_value, url: admin_product_variant_option_values_path(@master_variant, @variant), html: {role: 'form'}) do |f| %>
+  <%= f.fields_for :option_value do |p| %>
+    <div class='form-group'>
+      <%= f.label :id, t(:option_value) %><br />
+      <%= f.select :id, options_from_collection_for_select(@option_type.option_values, 'id', 'descriptive_name'), include_blank: true, class: 'form-control' %>
+    </div>
+  <% end %>
+    <div class='actions'>
+    <%= f.submit %>
+  </div>
+<% end %>

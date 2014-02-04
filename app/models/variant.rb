@@ -15,8 +15,10 @@ class Variant
 
   embeds_one :product
   embeds_many :images
+  has_and_belongs_to_many :option_values  
 
   accepts_nested_attributes_for :product
+  accepts_nested_attributes_for :option_values
 
   before_destroy :ensure_not_referenced_by_any_line_item
 

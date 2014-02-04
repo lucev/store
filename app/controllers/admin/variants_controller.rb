@@ -3,7 +3,7 @@ class Admin::VariantsController < AdminController
   # GET /variants.json
   def index
     @master_variant = Variant.find(params[:product_id])
-    @variants = Variant.where(:master_id => @master_variant.id, :is_master => false)
+    @variants = Variant.where(:master_id => @master_variant.id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -40,6 +40,7 @@ class Admin::VariantsController < AdminController
   # GET /variants/1/edit
   def edit
     @variant = Variant.find(params[:id])
+    @master_variant = Variant.find(@variant.master_id)
     @path = admin_product_variant_path(@variant.master_id, @variant)
     @cancel_path = request.env['HTTP_REFERER'] || admin_product_variants_path(@variant.master_id)
   end
@@ -73,7 +74,7 @@ class Admin::VariantsController < AdminController
 
     respond_to do |format|
       if @variant.update_attributes(params[:variant])
-        format.html { redirect_to admin_product_variant_path(@variant.master_id, @variant),
+        format.html { redirect_to admin_product_variants_path(@variant.master_id),
           notice: 'Variant was successfully updated.' }
         format.json { head :no_content }
       else

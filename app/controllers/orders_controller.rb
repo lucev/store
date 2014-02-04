@@ -68,7 +68,8 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
         if @order.purchase
-          format.html { redirect_to @order, notice: 'Order was successfully created.' }
+          current_cart.destroy
+          format.html { redirect_to @order, notice: t(:order_successfully_created) }
           format.json { render json: @order, status: :created, location: @order }
         else
           redirect_to edit_order_url @order
