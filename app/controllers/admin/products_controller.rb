@@ -103,13 +103,7 @@ class Admin::ProductsController < AdminController
   # DELETE /products/1.json
   def destroy
     @master_variant = Variant.find(params[:id])
-    @variants = Variant.where(:master_id => @master_variant.id)
-    unless @variants.empty?
-      @variants.each do |v|
-        v.destroy
-      end
-    end
-    @master_variant.destroy
+    Variant.destroy_all(master_id: @master_variant.id)
 
     respond_to do |format|
       format.html { redirect_to admin_products_url(I18n.locale) }
