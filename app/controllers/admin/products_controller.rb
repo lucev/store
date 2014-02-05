@@ -72,23 +72,27 @@ class Admin::ProductsController < AdminController
   # PUT /products/1.json
   def update
     @master_variant = Variant.find(params[:id])
-    
     @path = edit_admin_product_path(@master_variant)
+    old_name = @master_variant.product.name
+    old_description = @master_variant.product.description
+
+    Variant.where(:master_id => @master_variant.id).update_all(
+     'product.name' => params[:variant][:product_attributes][:name],
+     'product.description' => params[:variant][:product_attributes][:description]
+    )
+
+    last_error = Variant.mongo_session.command(getLastError:1)
 
     respond_to do |format|
-      if @master_variant.update_attributes(params[:variant])
 
-        @variants = Variant.where(:master_id => @master_variant.id)
-        unless @variants.empty?
-          @variants.each do |v|
-            v.product.update_attributes(
-              :name => @master_variant.product.name,
-              :description => @master_variant.product.description)
-          end
-        end
+      if last_error['err'].nil?
         format.html { redirect_to admin_product_path(I18n.locale, @master_variant), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
+        Variant.where(:master_id => @master_variant.id).update_all(
+          'product.name' => old_name,
+          'product.description' => old_description
+        )
         format.html { render action: "edit" }
         format.json { render json: @master_variant.errors, status: :unprocessable_entity }
       end
