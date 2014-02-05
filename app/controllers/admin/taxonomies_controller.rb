@@ -87,6 +87,9 @@ class Admin::TaxonomiesController < AdminController
   # DELETE /taxonomies/1.json
   def destroy
     @taxonomy = Taxonomy.find(params[:id])
+
+    Taxonomy.destroy_all(ancestor_ids: @taxonomy.id)
+
     @taxonomy.destroy
 
     respond_to do |format|
