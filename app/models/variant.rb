@@ -20,6 +20,7 @@ class Variant
   accepts_nested_attributes_for :product
   accepts_nested_attributes_for :option_values
 
+  index 'price' => 1
   index 'product.master_id' => 1
   index 'product.name' => 1
   index 'product.taxonomies' => 1
