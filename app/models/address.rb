@@ -4,6 +4,7 @@ class Address
 
   field :firstname, type: String
   field :lastname, type: String
+  field :company, type: String
   field :address, type: String
   field :city, type: String  
   field :zipcode, type: String

@@ -2,15 +2,19 @@ Store::Application.routes.draw do
 
   scope "(:locale)", locale: /en|hr/ do
 
-    resources :line_items
-    resources :carts, :except => [:show]
-    resources :orders, :except => [:index, :destroy]
-
     root :to => 'pages#home'
     match 'products/:id' => 'variants#show', :as => :product
     match 'products' => 'pages#home'
     match 'cart' => 'carts#show', :as => :show_cart
 
+    # payments
+    match '/authorize_net_callback' => 'payments#authorize_net_callback', :as => 'authorize_net_callback'
+    match '/paypal_callback' => 'payments#paypal_callback', :as => 'paypal_callback'
+    match '/payments/thank_you', :to => 'payments#thank_you', :as => 'payments_thank_you', :via => [:get]
+
+    resources :line_items
+    resources :carts, :except => [:show]
+    resources :orders, :except => [:index, :destroy]
     devise_for :users
 
     namespace :admin do

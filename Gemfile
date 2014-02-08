@@ -44,3 +44,6 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'rails-i18n', '~> 3.0.0'
 gem 'activemerchant'
 gem 'mongoid-autoinc', '~> 0.3.0'
+
+gem 'authorize-net'
+# gem 'open-uri'

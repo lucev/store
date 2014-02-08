@@ -10,6 +10,7 @@ class Order
   field :card_expires_on, type: Date
   field :ip_address, type: String
   field :number, type: String
+  field :status, type: Symbol
 
   increments :number, seed: 1000
 

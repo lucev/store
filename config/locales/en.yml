@@ -61,6 +61,7 @@ en:
 
   firstname: 'Firstname'
   lastname: 'Lastname'
+  company: 'Company'
   address: 'Address'
   shipping_address: 'Shipping address'
   city: 'City'
@@ -80,6 +81,9 @@ en:
   name: 'Name'
 
   option_types: 'Option types'
+
+  your_order_is_paid: 'Your order is paid'
+  thank_you_for_your_purchase: 'Thank you for your purchase'  
 
   admin:
     products:

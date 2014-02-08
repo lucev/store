@@ -1,7 +1,12 @@
+require "uri"
+require "net/http"
+
 class OrdersController < ApplicationController
 
   before_filter :authenticate_user!
 
+  helper :authorize_net
+  protect_from_forgery :except => :relay_response
   # GET /orders
   # GET /orders.json
   def index
@@ -17,6 +22,9 @@ class OrdersController < ApplicationController
   # GET /orders/1.json
   def show
     @order = Order.find(params[:id])
+
+    @sim_transaction = AuthorizeNet::SIM::Transaction.new(AUTHORIZE_NET_CONFIG['api_login_id'], AUTHORIZE_NET_CONFIG['api_transaction_key'], @order.total, :hosted_payment_form => true)
+    @sim_transaction.set_hosted_payment_receipt(AuthorizeNet::SIM::HostedReceiptPage.new(:link_method => AuthorizeNet::SIM::HostedReceiptPage::LinkMethod::GET, :link_text => 'Continue', :link_url => authorize_net_callback_url(I18n.locale, :only_path => false)))
 
     respond_to do |format|
       format.html # show.html.erb
@@ -67,14 +75,17 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        if @order.purchase
+        # if @order.purchase
+        redirect_to order_path @order
+        break
           current_cart.destroy
           format.html { redirect_to @order, notice: t(:order_successfully_created) }
           format.json { render json: @order, status: :created, location: @order }
-        else
-          redirect_to edit_order_url @order
-          break
-        end
+
+        # else
+        #   redirect_to edit_order_url @order
+        #   break
+        # end
       else
         format.html { render action: "new" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
