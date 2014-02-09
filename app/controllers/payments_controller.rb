@@ -23,6 +23,7 @@ class PaymentsController < ApplicationController
     @order = Order.find(params[:x_order_id])
     if params[:x_amount] = @order.total
       @order.update_attributes(:status => :paid)
+      empty_cart
       redirect_to payments_thank_you_path
     else
 

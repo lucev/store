@@ -33,6 +33,10 @@ class Order
     line_items.to_a.sum { |item| item.total }
   end
 
+  def empty?
+    self.line_items.empty?
+  end
+
   def purchase
     response = GATEWAY.purchase(price_in_cents, credit_card, purchase_options)
     hash = {}

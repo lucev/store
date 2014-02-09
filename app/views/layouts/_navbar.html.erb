@@ -11,7 +11,7 @@
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
     <ul class="nav navbar-nav navbar-right">
       <li>
-        <%= link_to ' ' + number_to_currency(@cart.subtotal, locale: I18n.locale), show_cart_path,
+        <%= link_to ' ' + number_to_currency(@cart.total, locale: I18n.locale), show_cart_path,
                 class: 'navbar-link glyphicon glyphicon-shopping-cart' %>
       </li>
       <% if user_signed_in? %>

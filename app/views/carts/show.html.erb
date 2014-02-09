@@ -31,7 +31,7 @@
       <td></td>
       <td></td>
       <td><strong><%= t(:subtotal) %></strong></td>
-      <td><strong><%= number_to_currency(@cart.subtotal, :locale => I18n.locale) %></strong></td>
+      <td><strong><%= number_to_currency(@cart.total, :locale => I18n.locale) %></strong></td>
       <td><%= link_to new_order_path, :class => 'btn btn-success' do %>
             <strong><%= t(:checkout) %></strong>
           <% end %>

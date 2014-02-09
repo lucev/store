@@ -35,10 +35,9 @@ class OrdersController < ApplicationController
   # GET /orders/new
   # GET /orders/new.json
   def new
-    @order = Order.new
-    @order.line_items = current_cart.line_items
+    @order = current_cart
     @order.build_address
-    @cart = current_cart
+
     if current_user.default_address.nil?
       @order.address = Address.new
     else
@@ -54,7 +53,6 @@ class OrdersController < ApplicationController
   # GET /orders/1/edit
   def edit
     @order = Order.find(params[:id])
-
   end
 
   # POST /orders
@@ -111,13 +109,8 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.update_attributes(params[:order])
-       if @order.purchase
-          format.html { redirect_to @order, notice: 'Order was successfully created.' }
-          format.json { render json: @order, status: :created, location: @order }
-        else
-          redirect_to edit_order_url @order
-          break
-        end
+        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.json { render json: @order, status: :created, location: @order }
       else
         format.html { render action: "edit" }
         format.json { render json: @order.errors, status: :unprocessable_entity }
