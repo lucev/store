@@ -89,6 +89,7 @@ en:
   confirmed: 'Confirmed'
   paid: 'Paid'
   shipped: 'Shipped'
+  suspended: 'Suspended'
   order_date: 'Order date'
 
   admin:

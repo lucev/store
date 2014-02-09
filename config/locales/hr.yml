@@ -96,6 +96,7 @@ hr:
   confirmed: 'Potvrđeno'
   paid: 'Plaćeno'
   shipped: 'Poslano'
+  suspended: 'Obustavljeno'
   order_date: 'Datum narudžbe'
 
   admin:

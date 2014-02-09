@@ -8,4 +8,10 @@ class Admin::OrdersController < AdminController
     @order = Order.find(params[:id])
   end
   
+  def update
+    @order = Order.find(params[:id])
+
+    @order.update_attributes(:status => params[:order][:status])
+    redirect_to admin_orders_path
+  end
 end
