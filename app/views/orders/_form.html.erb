@@ -40,22 +40,6 @@
       <%= p.text_field :country, class: 'form-control' %>
     </div>
   <% end %>
-    <div class="form-group">
-      <%= f.label :card_type, t(:card_type) %><br />
-      <%= f.select :card_type, [["Visa", "visa"], ["MasterCard", "master"], ["American Express", "american_express"]], class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :card_number, t(:card_number) %><br />
-      <%= f.text_field :card_number, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :card_verification, t(:cvv) %><br />
-      <%= f.text_field :card_verification, class: 'form-control' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :card_expires_on, t(:card_expires_on) %><br />
-      <%= f.date_select :card_expires_on, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :add_month_numbers => true, class: 'form-control' %>
-    </div>
   <div class="actions">
     <%= f.submit t(:save),  class: 'btn btn-primary' %>
     <%= link_to t(:cancel), admin_products_path(I18n.locale), class: 'btn btn-link' %>
