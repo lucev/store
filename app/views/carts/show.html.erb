@@ -1,5 +1,5 @@
 <h1><%= t(:shopping_cart) %></h1>
-<% if @cart.empty? %>
+<% if @cart.nil? %>
   <strong><%= t(:your_cart_is_empty) %></strong><br/><br/>
   <%= link_to t(:continue_shopping), root_path, :class => 'btn btn-primary' %>
 <% else %>

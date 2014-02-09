@@ -100,11 +100,11 @@ class OrdersController < ApplicationController
       redirect_to show_cart_url
       return
     else
-      # @order = current_cart.order
-      # @order.cart = current_cart
       @order.ip_address = request.remote_ip
       @address = Address.new(params[:order][:address_attributes])
       current_user.addresses.push @address unless current_user.has_address @address
+      params[:order][:status] = :confirmed
+      params[:order][:completed_at] = DateTime.now
     end
 
     respond_to do |format|

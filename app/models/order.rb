@@ -11,6 +11,7 @@ class Order
   field :ip_address, type: String
   field :number, type: String
   field :status, type: Symbol
+  field :completed_at, type: DateTime
 
   increments :number, seed: 1000
 

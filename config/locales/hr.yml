@@ -92,6 +92,12 @@ hr:
   your_order_is_paid: 'Vaša narudžba je plaćena'
   thank_you_for_your_purchase: 'Zahvaljujemo na kupnji'
 
+  cart: 'Košarica'
+  confirmed: 'Potvrđeno'
+  paid: 'Plaćeno'
+  shipped: 'Poslano'
+  order_date: 'Datum narudžbe'
+
   admin:
     products:
       name: 'Naziv'
