@@ -1,7 +1,7 @@
 <h1><%= t(:shopping_cart) %></h1>
 <% if @cart.empty? %>
   <strong><%= t(:your_cart_is_empty) %></strong><br/><br/>
-  <%= link_to t(:continue_shopping), '#', :class => 'btn btn-primary' %>
+  <%= link_to t(:continue_shopping), root_path, :class => 'btn btn-primary' %>
 <% else %>
   <table class='table table-striped table-hover'>
     <tr>
@@ -24,7 +24,7 @@
     </tr>
   <% end %>
     <tr>
-      <td><%= link_to t(:continue_shopping), '#', :class => 'btn btn-primary' %>&nbsp;
+      <td><%= link_to t(:continue_shopping), root_path, :class => 'btn btn-primary' %>&nbsp;
           <%= link_to t(:empty_cart), cart_path(@cart), method: :delete,
                 data: { confirm: t(:are_sure)}, :class => 'btn btn-default' %>
       </td>
