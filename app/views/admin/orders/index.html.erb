@@ -7,6 +7,7 @@
     <th><%= t(:status) %></th>
     <th><%= t(:customer_email) %></th>
     <th><%= t(:total) %></th>
+    <th></th>
   </tr>
 <% @orders.each do |order| %>
   <tr>
@@ -15,6 +16,7 @@
     <td><%= t(order.status) %></td>
     <td><%= mail_to order.customer.email unless order.customer.nil? %></td>
     <td><%= number_to_currency(order.total, locale: I18n.locale) %></td>
+    <td><%= link_to '', admin_order_path(order), class: 'glyphicon glyphicon-edit btn btn-link' %></th>
   </tr>
 <% end %>
 </table>
