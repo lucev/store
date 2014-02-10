@@ -91,6 +91,7 @@ en:
   shipped: 'Shipped'
   suspended: 'Suspended'
   order_date: 'Order date'
+  filter: 'Filter'
 
   admin:
     products:

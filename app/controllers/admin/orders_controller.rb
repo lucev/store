@@ -1,7 +1,12 @@
 class Admin::OrdersController < AdminController
 
   def index
-    @orders = Order.all.order_by(:updated_at.desc)
+    if(params[:status].nil? or params[:status] == "")
+      @orders = Order.all.order_by(:updated_at.desc)
+    else
+      @status = params[:status]
+      @orders = Order.where(:status => @status).order_by(:updated_at.desc)
+    end
   end
 
   def show

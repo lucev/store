@@ -98,6 +98,7 @@ hr:
   shipped: 'Poslano'
   suspended: 'Obustavljeno'
   order_date: 'Datum narudžbe'
+  filter: 'Odaberi'
 
   admin:
     products:
