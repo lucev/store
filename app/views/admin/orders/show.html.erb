@@ -28,7 +28,7 @@
 <%= form_for(@order, url: admin_order_path(@order)) do |f| %>
   <div class='form-group'>
     <%= f.label :status, t(:status) %><br />
-    <%= f.select :status, [:shipped, :suspended].collect{|s| [t(s), s]}, include_blank: true, class: 'form-control' %>
+    <%= f.select :status, [:shipped, :suspended].collect{|s| [t(s), s]}, class: 'form-control' %>
   </div>
   <div class="actions">
     <%= f.submit t(:save),  class: 'btn btn-primary' %>
