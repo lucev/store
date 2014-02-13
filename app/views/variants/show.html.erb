@@ -20,7 +20,7 @@
             <% @options.each_key do |option_type| %>
               <% unless option_type.nil? %>
                 <%= option_type.name unless option_type.nil? %><br/>
-                <%= select_tag "option_values[#{option_type.id}]", options_from_collection_for_select(@options[option_type], 'id', 'name') %><br/>
+                <%= select_tag "option_values[#{option_type.id}]", options_from_collection_for_select(@options[option_type], 'id', 'name') %><br/><br/>
               <% end %>
             <% end %>
           <div>
@@ -38,7 +38,4 @@
       </p>
     </div>
   </div>
-  <% @variant.option_values.each do |option_value| %>
-    <%= option_value.name %><br/>
-  <% end %>
 </div>
