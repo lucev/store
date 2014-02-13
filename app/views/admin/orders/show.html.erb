@@ -12,7 +12,11 @@
     <td><%= link_to image_tag(item.variant.preview_image.image_url(:icon)),
               admin_product_variant_path(item.variant.master_id, item.variant) %></td>
     <td><%= link_to item.variant.product.name,
-              admin_product_variant_path(item.variant.master_id, item.variant) %></td>
+              admin_product_variant_path(item.variant.master_id, item.variant) %><br/>
+        <% item.option_values.each do |value| %>
+          <%= value.descriptive_name %><br/>
+        <% end %>
+    </td>
     <td><%= item.quantity %></td>
     <td><%= number_to_currency(item.total, locale: I18n.locale) %></td>
   </tr>

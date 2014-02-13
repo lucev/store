@@ -47,9 +47,12 @@ class LineItemsController < ApplicationController
       current_cart.line_items.push @line_item
     else
       @line_item.quantity += 1
-      @line_item.save
     end
 
+    params[:option_values].each_key do |option_type|
+      @line_item.option_values << OptionValue.find(params[:option_values][option_type])
+    end
+    @line_item.save
 
     respond_to do |format|
       if true

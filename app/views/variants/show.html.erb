@@ -15,7 +15,19 @@
           <%= link_to image_tag(variant.preview_image.image_url(:icon), class:'img-responsive img-thumbnail'), product_path(variant) unless variant.preview_image.nil? %>
         <% end %><br/>
       <% end %><br/><br/>
-      <%= button_to t(:add_to_cart), line_items_path(:variant_id => @variant.id), class: 'btn btn-success btn-lg' %>
+      <%= form_tag(line_items_path(variant_id: @variant.id)) do %>
+        <%= form_for :option_types do |f| %>
+            <% @options.each_key do |option_type| %>
+              <% unless option_type.nil? %>
+                <%= option_type.name unless option_type.nil? %><br/>
+                <%= select_tag "option_values[#{option_type.id}]", options_from_collection_for_select(@options[option_type], 'id', 'name') %><br/>
+              <% end %>
+            <% end %>
+          <div>
+            <%= submit_tag t(:add_to_cart), class: 'btn btn-success btn-lg' %>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
   <div class='row'>
@@ -26,4 +38,7 @@
       </p>
     </div>
   </div>
+  <% @variant.option_values.each do |option_value| %>
+    <%= option_value.name %><br/>
+  <% end %>
 </div>
