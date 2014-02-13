@@ -15,7 +15,11 @@
   <% @cart.line_items.each do |item| %>
     <tr>
       <td class='hidden-xs'><%= link_to image_tag(item.variant.preview_image.image_url(:preview)), product_path(item.variant) %></td>
-      <td><%= link_to item.variant.product.name, product_path(item.variant) %></td>
+      <td><%= link_to item.variant.product.name, product_path(item.variant) %><br/>
+              <% item.option_values.each do |value| %>
+                <%= value.descriptive_name %><br/>
+              <% end %>
+      </td>
       <td><%= number_to_currency(item.variant.price, :locale => I18n.locale) %></td>
       <td><%= item.quantity %></td>
       <td><%= number_to_currency(item.total, :locale => I18n.locale) %></td>
