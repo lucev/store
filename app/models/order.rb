@@ -24,6 +24,8 @@ class Order
 
   attr_accessor :card_number, :card_verification
 
+  validates_uniqueness_of :number
+
   # validate_on_create :validate_card
 
   def price_in_cents
