@@ -34,6 +34,7 @@ hr:
   editing_variant: 'Ažuriranje varijacije'
 
   price: 'Cijena'
+  prices: 'Cijene'
 
   description: 'Opis'
 
@@ -103,3 +104,6 @@ hr:
   admin:
     products:
       name: 'Naziv'
+
+  hrk: 'Kn'
+  usd: '$'

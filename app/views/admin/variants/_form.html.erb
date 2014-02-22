@@ -19,6 +19,15 @@
     <%= f.label :price, t(:price) %><br />
     <%= f.text_field :price, class: 'form-control' %>
   </div>
+  <% @variant.prices.each do |price| %>
+    <div class="form-group">
+      <%= f.fields_for :prices, price do |p| %>
+        <%= p.label :amount, "#{t(:price)} - #{price.currency.upcase} (#{t(price.currency)})" %><br />
+        <%= p.text_field :amount, class: 'form-control' %>
+        <%= p.hidden_field :currency %>
+      <% end %>
+    </div>
+  <% end %>
   <% unless @master_variant.product.option_types.empty? %>
     <table class='table table-striped table-hover table-condensed'>
       <tr>

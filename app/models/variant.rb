@@ -15,10 +15,12 @@ class Variant
 
   embeds_one :product
   embeds_many :images
+  embeds_many :prices
   has_and_belongs_to_many :option_values, index: true
 
   accepts_nested_attributes_for :product
   accepts_nested_attributes_for :option_values
+  accepts_nested_attributes_for :prices
 
   index 'price' => 1
   index 'product.master_id' => 1
