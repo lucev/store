@@ -46,4 +46,3 @@ gem 'activemerchant'
 gem 'mongoid-autoinc', '~> 0.3.0'
 
 gem 'authorize-net'
-# gem 'open-uri'
