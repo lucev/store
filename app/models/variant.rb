@@ -4,14 +4,11 @@ class Variant
 
   field :master_id, type: String
   field :sku, type: String
-  field :price, type: BigDecimal
   field :is_master, type: Boolean
 
   validates_presence_of :master_id
   validates_presence_of :sku
   validates_uniqueness_of :sku
-  validates_presence_of :price
-  validates_numericality_of :price
 
   embeds_one :product
   embeds_many :images
@@ -22,7 +19,7 @@ class Variant
   accepts_nested_attributes_for :option_values
   accepts_nested_attributes_for :prices
 
-  index 'price' => 1
+  index 'prices.amount' => 1
   index 'product.master_id' => 1
   index 'product.name' => 1
   index 'product.taxonomies' => 1
@@ -34,8 +31,21 @@ class Variant
     self.images.first
   end
 
+  def price
+    prices.where(currency: currency(I18n.locale)).first.amount
+  end
+
   private
 
     def ensure_not_referenced_by_any_line_item
+    end
+
+    def currency(locale)
+      case locale
+      when :hr
+        :hrk
+      when :en
+        :usd
+      end
     end
 end

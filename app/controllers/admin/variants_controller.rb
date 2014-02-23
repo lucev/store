@@ -27,13 +27,10 @@ class Admin::VariantsController < AdminController
   def new
     @variant = Variant.new
     @master_variant = Variant.find(params[:product_id])
-    @variant.price = @master_variant.price
+    @variant.prices = @master_variant.prices
     @path = admin_product_variants_path(@master_variant)
     @cancel_path = admin_product_variants_path(@master_variant)
 
-    configatron.available_currencies.each do |currency|
-      @variant.prices.push Price.new(currency: currency)
-    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @variant }

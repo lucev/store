@@ -3,7 +3,7 @@
   <% @variants.each do |variant| %>
     <div class='col-xs-12 col-sm-6 col-md-4 col-lg-3'>
       <div class='thumbnail'>
-        <%= link_to image_tag(variant.images.first.image_url(:thumb), class: 'img-responsive'),       product_path(variant) %>
+        <%= link_to image_tag(variant.images.first.image_url(:thumb), class: 'img-responsive'),       product_path(variant) unless variant.images.first.nil? %>
         <div class='caption'>
           <h4><%= link_to variant.product.name, product_path(variant) %></h4>
           <strong><%= number_to_currency(variant.price, locale: I18n.locale) %></strong>

@@ -49,8 +49,10 @@ class LineItemsController < ApplicationController
       @line_item.quantity += 1
     end
 
-    params[:option_values].each_key do |option_type|
-      @line_item.option_values << OptionValue.find(params[:option_values][option_type])
+    if params[:option_values]
+      params[:option_values].each_key do |option_type|
+        @line_item.option_values << OptionValue.find(params[:option_values][option_type])
+      end
     end
     @line_item.save
 

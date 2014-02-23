@@ -14,7 +14,7 @@
     </tr>
   <% @cart.line_items.each do |item| %>
     <tr>
-      <td class='hidden-xs'><%= link_to image_tag(item.variant.preview_image.image_url(:preview)), product_path(item.variant) %></td>
+      <td class='hidden-xs'><%= link_to image_tag(item.variant.preview_image.image_url(:preview)), product_path(item.variant) unless item.variant.preview_image.nil? %></td>
       <td><%= link_to item.variant.product.name, product_path(item.variant) %><br/>
               <% item.option_values.each do |value| %>
                 <%= value.descriptive_name %><br/>

@@ -34,6 +34,9 @@ class Admin::ProductsController < AdminController
     @path = admin_products_path
     @submit_text = t(:create_product)
 
+    configatron.available_currencies.each do |currency|
+      @master_variant.prices.push Price.new(currency: currency)
+    end
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @master_variant }
