@@ -20,9 +20,9 @@
               edit_admin_product_variant_path(I18n.locale, variant.master_id, variant), class: 'btn btn-link' %></td>
     <td><%= number_to_currency(variant.price, locale: I18n.locale) %></td>
     <td class="hidden-xs">
-      <%= link_to '', edit_admin_product_variant_path(I18n.locale, variant.master_id, variant),
+      <%= link_to '', edit_admin_product_variant_path(variant.master_id, variant),
             :class=>'glyphicon glyphicon-edit btn btn-link' %>&nbsp;
-      <%= link_to '', admin_product_variant_path(I18n.locale, variant.master_id, variant), method: :delete,
+      <%= link_to '', admin_product_variant_path(variant.master_id, variant), method: :delete,
             data: { confirm: t(:are_sure) }, :class => 'glyphicon glyphicon-trash btn btn-link' %>
     </td>
   </tr>
@@ -31,6 +31,6 @@
 
 <br />
 
-<%= link_to new_admin_product_variant_path(I18n.locale, @master_variant), :class => 'btn btn-primary' do %>
+<%= link_to new_admin_product_variant_path(@master_variant), :class => 'btn btn-primary' do %>
   <span class='glyphicon glyphicon-plus'></span> <%= t(:new_variant) %>
 <% end %>
