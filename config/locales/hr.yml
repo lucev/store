@@ -100,6 +100,7 @@ hr:
   suspended: 'Obustavljeno'
   order_date: 'Datum narudžbe'
   filter: 'Odaberi'
+  purchase: 'Plaćanje'
 
   admin:
     products:

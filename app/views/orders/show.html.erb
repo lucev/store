@@ -1,4 +1,8 @@
 <p id="notice"><%= notice %></p>
+<div class="col-lg-5">
+  <%= render 'carts/summary' %>
+</div>
+<div>
 <%= form_for :sim_transaction, :url => AuthorizeNet::SIM::Transaction::Gateway::TEST do |f| %>
   <%= sim_fields(@sim_transaction) %>
   <%= hidden_field_tag 'x_order_id', @order.id %>
@@ -10,7 +14,8 @@
   <%= hidden_field_tag 'x_zip', @order.address.zipcode %>
   <%= hidden_field_tag 'x_country', @order.address.country %>
   <%= hidden_field_tag 'x_phone', @order.address.phone %>
-  <%= label_tag 'x_amount', "Total: #{number_to_currency(@order.total)}" %>
+  <%#= label_tag 'x_amount', "Total: #{number_to_currency(@order.total)}" %>
   <br />
-  <%= f.submit 'Purchase'%>
+  <%= f.submit "#{t(:purchase)}" %>
 <% end %>
+</div>

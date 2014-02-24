@@ -93,6 +93,7 @@ en:
   suspended: 'Suspended'
   order_date: 'Order date'
   filter: 'Filter'
+  purchase: 'Purchase'
 
   admin:
     products:
