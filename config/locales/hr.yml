@@ -101,6 +101,7 @@ hr:
   order_date: 'Datum narudžbe'
   filter: 'Odaberi'
   purchase: 'Plaćanje'
+  status_filter: 'Pretraga po statusu'
 
   admin:
     products:

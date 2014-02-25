@@ -3,7 +3,7 @@
 
 <%= form_tag(admin_orders_path, method: :get) do %>
   <div class='form-group'>
-    <%= label_tag :status, t(:status) %>&nbsp;
+    <%= label_tag :status, t(:status_filter) %>&nbsp;
     <%= select_tag :status, options_for_select([:cart, :confirmed, :paid, :shipped, :suspended].collect{|s| [t(s), s]}, @status), include_blank: true %>&nbsp;
     <%= submit_tag t(:filter),  class: 'btn btn-default btn-xs' %>
   </div>
