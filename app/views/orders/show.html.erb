@@ -28,6 +28,6 @@
     <%= hidden_field_tag 'x_ship_to_zip', @order.address.zipcode %>
     <%= hidden_field_tag 'x_ship_to_country', @order.address.country %>
     <%= hidden_field_tag 'x_ship_to_phone', @order.address.phone %>
-    <%= f.submit t(:purchase) %>
+    <%= f.submit t(:purchase), class: 'btn btn-primary' %>
   <% end %>
 </div>
