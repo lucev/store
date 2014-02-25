@@ -2,20 +2,27 @@
 <div class="col-lg-5">
   <%= render 'carts/summary' %>
 </div>
-<div>
-<%= form_for :sim_transaction, :url => AuthorizeNet::SIM::Transaction::Gateway::TEST do |f| %>
-  <%= sim_fields(@sim_transaction) %>
-  <%= hidden_field_tag 'x_order_id', @order.id %>
-  <%= hidden_field_tag 'x_first_name', @order.address.firstname %>
-  <%= hidden_field_tag 'x_last_name', @order.address.lastname %>
-  <%= hidden_field_tag 'x_address', @order.address.address %>
-  <%= hidden_field_tag 'x_company', @order.address.company %>
-  <%= hidden_field_tag 'x_city', @order.address.city %>
-  <%= hidden_field_tag 'x_zip', @order.address.zipcode %>
-  <%= hidden_field_tag 'x_country', @order.address.country %>
-  <%= hidden_field_tag 'x_phone', @order.address.phone %>
-  <%#= label_tag 'x_amount', "Total: #{number_to_currency(@order.total)}" %>
-  <br />
-  <%= f.submit "#{t(:purchase)}" %>
-<% end %>
+<br/><br/>
+<div class='row'>
+  <%= form_for :sim_transaction, :url => AuthorizeNet::SIM::Transaction::Gateway::TEST do |f| %>
+    <%= sim_fields(@sim_transaction) %>
+    <%= hidden_field_tag 'x_order_id', @order.id %>
+    <%= hidden_field_tag 'x_first_name', @order.address.firstname %>
+    <%= hidden_field_tag 'x_last_name', @order.address.lastname %>
+    <%= hidden_field_tag 'x_address', @order.address.address %>
+    <%= hidden_field_tag 'x_company', @order.address.company %>
+    <%= hidden_field_tag 'x_city', @order.address.city %>
+    <%= hidden_field_tag 'x_zip', @order.address.zipcode %>
+    <%= hidden_field_tag 'x_country', @order.address.country %>
+    <%= hidden_field_tag 'x_phone', @order.address.phone %>
+    <%= hidden_field_tag 'x_ship_to_first_name', @order.address.firstname %>
+    <%= hidden_field_tag 'x_ship_to_last_name', @order.address.lastname %>
+    <%= hidden_field_tag 'x_ship_to_address', @order.address.address %>
+    <%= hidden_field_tag 'x_ship_to_company', @order.address.company %>
+    <%= hidden_field_tag 'x_ship_to_city', @order.address.city %>
+    <%= hidden_field_tag 'x_ship_to_zip', @order.address.zipcode %>
+    <%= hidden_field_tag 'x_ship_to_country', @order.address.country %>
+    <%= hidden_field_tag 'x_ship_to_phone', @order.address.phone %>
+    <%= f.submit t(:purchase) %>
+  <% end %>
 </div>
