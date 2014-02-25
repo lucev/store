@@ -94,6 +94,7 @@ en:
   order_date: 'Order date'
   filter: 'Filter'
   purchase: 'Purchase'
+  status_change: 'Change status'
   status_filter: 'Status filtering'
 
   admin:
