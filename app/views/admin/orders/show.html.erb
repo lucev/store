@@ -1,41 +1,51 @@
 <h1><%= "#{t(:order)}: ##{@order.number}" %></h1>
 
-<table class="table table-striped table-bordered table-condensed">
-  <tr>
-    <th><%= t(:image) %></th>
-    <th><%= t(:product) %></th>
-    <th><%= t(:quantity) %></th>
-    <th><%= t(:price) %></th>
-  </tr>
-  <% @order.line_items.each do |item| %>
-  <tr>
-    <td><%= link_to image_tag(item.variant.preview_image.image_url(:icon)),
-              admin_product_variant_path(item.variant.master_id, item.variant) %></td>
-    <td><%= link_to item.variant.product.name,
-              admin_product_variant_path(item.variant.master_id, item.variant) %><br/>
-        <% item.option_values.each do |value| %>
-          <%= value.descriptive_name %><br/>
-        <% end %>
-    </td>
-    <td><%= item.quantity %></td>
-    <td><%= number_to_currency(item.total, locale: I18n.locale) %></td>
-  </tr>
-  <% end %>
-  <tr>
-    <td></td>
-    <td></td>
-    <td><strong><%= t(:total) %></strong></td>
-    <td><strong><%= number_to_currency(@order.total, locale: I18n.locale) %></strong></td>
-  </tr>
-</table>
+<div class='row'>
+  <table class="table table-striped table-bordered table-condensed">
+    <tr>
+      <th><%= t(:image) %></th>
+      <th><%= t(:product) %></th>
+      <th><%= t(:quantity) %></th>
+      <th><%= t(:price) %></th>
+    </tr>
+    <% @order.line_items.each do |item| %>
+    <tr>
+      <td><%= link_to image_tag(item.variant.preview_image.image_url(:icon)),
+                admin_product_variant_path(item.variant.master_id, item.variant) %></td>
+      <td><%= link_to item.variant.product.name,
+                admin_product_variant_path(item.variant.master_id, item.variant) %><br/>
+          <% item.option_values.each do |value| %>
+            <%= value.descriptive_name %><br/>
+          <% end %>
+      </td>
+      <td><%= item.quantity %></td>
+      <td><%= number_to_currency(item.total, locale: I18n.locale) %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><strong><%= t(:total) %></strong></td>
+      <td><strong><%= number_to_currency(@order.total, locale: I18n.locale) %></strong></td>
+    </tr>
+  </table>
+</div>
 
-<%= form_for(@order, url: admin_order_path(@order)) do |f| %>
-  <div class='form-group'>
-    <%= f.label :status, t(:status_change) %><br />
-    <%= f.select :status, [:shipped, :suspended].collect{|s| [t(s), s]}, class: 'form-control' %>
+<div class='row'>
+  <div class='col-lg-4'>
+    <%= render 'shipping_address' %>
   </div>
-  <div class="actions">
-    <%= f.submit t(:save),  class: 'btn btn-primary' %>
-    <%= link_to t(:cancel), admin_orders_path, class: 'btn btn-link' %>
-  </div>
-<% end %>
+</div>
+
+<div class='row'>
+  <%= form_for(@order, url: admin_order_path(@order)) do |f| %>
+    <div class='form-group'>
+      <%= f.label :status, t(:status_change) %><br />
+      <%= f.select :status, [:shipped, :suspended].collect{|s| [t(s), s]}, class: 'form-control' %>
+    </div>
+    <div class="actions">
+      <%= f.submit t(:save),  class: 'btn btn-primary' %>
+      <%= link_to t(:cancel), admin_orders_path, class: 'btn btn-link' %>
+    </div>
+  <% end %>
+</div>
