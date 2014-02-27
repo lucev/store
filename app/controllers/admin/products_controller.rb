@@ -80,8 +80,8 @@ class Admin::ProductsController < AdminController
     old_description = @master_variant.product.description
 
     Variant.where(:master_id => @master_variant.id).update_all(
-     'product.name' => params[:variant][:product_attributes][:name],
-     'product.description' => params[:variant][:product_attributes][:description]
+     "product.name_#{I18n.locale}" => params[:variant][:product_attributes]["name_#{I18n.locale}".to_sym],
+     "product.description_#{I18n.locale}" => params[:variant][:product_attributes]["description_#{I18n.locale}".to_sym]
     )
 
     last_error = Variant.mongo_session.command(getLastError:1)
@@ -93,8 +93,8 @@ class Admin::ProductsController < AdminController
         format.json { head :no_content }
       else
         Variant.where(:master_id => @master_variant.id).update_all(
-          'product.name' => old_name,
-          'product.description' => old_description
+          "product.name_#{I18n.locale}" => old_name,
+          "product.description_#{I18n.locale}" => old_description
         )
         format.html { render action: "edit" }
         format.json { render json: @master_variant.errors, status: :unprocessable_entity }

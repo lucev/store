@@ -87,6 +87,7 @@ hr:
   new_option_type: 'Nova karakteristika proizvoda'
   option_type: 'Karakteristika'
   option_value: 'Vrijednost karakteristike'
+  option_values: 'Vrijednosti karakteristika'
 
   order_successfully_created: 'Narudžba je uspješno kreirana'
 
@@ -103,6 +104,9 @@ hr:
   purchase: 'Plaćanje'
   status_change: 'Promjena statusa'
   status_filter: 'Pretraga po statusu'
+
+  name_hr: 'Naziv (HR)'
+  name_en: 'Naziv (EN)'  
 
   admin:
     products:

@@ -82,6 +82,7 @@ en:
   name: 'Name'
 
   option_types: 'Option types'
+  option_values: 'Option values'
 
   your_order_is_paid: 'Your order is paid'
   thank_you_for_your_purchase: 'Thank you for your purchase'  
@@ -96,6 +97,9 @@ en:
   purchase: 'Purchase'
   status_change: 'Change status'
   status_filter: 'Status filtering'
+
+  name_hr: 'Name (HR)'
+  name_en: 'Name (EN)'
 
   admin:
     products:

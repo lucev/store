@@ -12,12 +12,21 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.label :name, t(:name) %><br />
-    <%= f.text_field :name, class: 'form-control' %>
+    <%= f.label :name, t(:name_hr) %><br />
+    <%= f.text_field :name_hr, class: 'form-control' %>
   </div>
+  <div class="form-group">
+    <%= f.label :name, t(:name_en) %><br />
+    <%= f.text_field :name_en, class: 'form-control' %>
+  </div>  
   <div class="actions">
     <%= f.submit t(:save) %>
   </div>
+<% end %>
+
+<br><br>
+<% if @action == :edit %>
+  <h4><%= t(:option_values) %></h4>
 <% end %>
 
 <% unless @option_type.option_values.empty? %>
@@ -37,10 +46,14 @@
 
 <% if @action == :edit %>
   <%= form_for(@option_value, url: admin_option_values_path(@option_type.id), html: {role: 'form'}) do |f| %>
-    <div class='form-group'>
-      <%= f.label :name, t(:name) %><br />
-      <%= f.text_field :name, class: 'form-control' %>
-    </div>
+  <div class="form-group">
+    <%= f.label :name, t(:name_hr) %><br />
+    <%= f.text_field :name_hr, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= f.label :name, t(:name_en) %><br />
+    <%= f.text_field :name_en, class: 'form-control' %>
+  </div>
     <div class='actions'>
       <%= f.submit t(:save) %>
     </div>

@@ -2,7 +2,8 @@ class Taxonomy
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :name, type: String
+  field :name_hr, type: String
+  field :name_en, type: String
 
   belongs_to :parent, :class_name => 'Taxonomy', inverse_of: :children
   has_many :children, :class_name => 'Taxonomy', inverse_of: :parent
@@ -28,5 +29,9 @@ class Taxonomy
 
   def is_root?
     self.parent.nil?
+  end
+
+  def name
+    self.send("name_#{I18n.locale}".to_sym)
   end
 end

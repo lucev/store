@@ -12,11 +12,11 @@
   <%= f.fields_for :product do |p| %>
     <div class="form-group">
       <%= p.label :name, t('admin.products.name') %><br />
-      <%= p.text_field :name, class: 'form-control' %>
+      <%= p.text_field "name_#{I18n.locale}".to_sym, class: 'form-control' %>
     </div>
     <div class="form-group">
       <%= p.label :description, t(:description) %><br />
-      <%= p.text_field :description, class: 'form-control' %>
+      <%= p.text_field "description_#{I18n.locale}".to_sym, class: 'form-control' %>
     </div>
   <% end %>
   <div class="form-group">
